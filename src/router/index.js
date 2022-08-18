@@ -3,8 +3,10 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',// 去掉路径中的 # 号
   routes: [
-   
+    { path: '/', redirect: 'login' },
+    { path: '/login', name: 'login', component: () => import('@/view/Login.vue') },
   ]
 })
 // 挂载路由导航守卫：to表示将要访问的路径，from表示从哪里来，next是下一个要做的操作

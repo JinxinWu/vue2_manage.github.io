@@ -5,15 +5,15 @@
       <el-image class="logo_image" :src="logo_url" :fit="cover"></el-image>
       <p class="login_title">登 录</p>
       <p class="login_desc">欢迎登录知否课堂后台管理系统</p>
-      <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item>
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item prop="username">
           <el-input
             placeholder="请输入管理员账号"
             v-model="input1"
             prefix-icon="el-icon-user"
           />
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input
             placeholder="请输入管理员密码"
             v-model="input1"
@@ -48,7 +48,16 @@ export default {
       juejin_img: require("@/assets/img/juejin.jpg"),
       officalAccount_img: require("@/assets/img/officalAccount.jpg"),
       form: {
-        checked: true,
+        username: "",
+        password: "",
+      },
+      rules: {
+        username: [
+          { required: true, message: "请输入管理员账号", trigger: "blur" },
+        ],
+        password: [
+          { required: true, message: "请输入管理员密码", trigger: "blur" },
+        ],
       },
     };
   },
@@ -88,6 +97,7 @@ export default {
   letter-spacing: 2px;
   color: #999a9a;
 }
+
 .el-form-item {
   margin-left: -80px;
 }

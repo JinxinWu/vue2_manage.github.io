@@ -12,10 +12,18 @@ const router = new Router({
       path: '/login',
       name: 'login',
       meta: {
-        // 页面标题title
+        // 页面标题 title
         title: '登录'
       },
       component: () => import('@/view/Login.vue')
+    },
+    {
+      path: '/home',
+      meta: {
+        // 页面标题 title
+        title: '主页'
+      },
+      component: () => import('@/view/Home.vue')
     },
   ]
 })
@@ -30,11 +38,12 @@ router.beforeEach((to, from, next) => {
     return next()
   }
   // 获取token
-  const tokenStr = sessionStorage.getItem('token')
-  if (!tokenStr) {
-    return next('/login')
-  } else {
-    next()
-  }
+  // const token= sessionStorage.getItem('token')
+  // if (!token) {
+  //   return next('/login')
+  // } else {
+  //   next()
+  // }
+  return next()
 })
 export default router

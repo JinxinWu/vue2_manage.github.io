@@ -2,38 +2,45 @@
   <div class="login">
     <!-- login_card -->
     <el-card class="login_card">
-      <el-image class="logo_image" :src="logo_url" :fit="cover"></el-image>
+      <el-image class="logo_image" :src="logo_url" fit="cover"></el-image>
       <p class="login_title">登 录</p>
       <p class="login_desc">欢迎登录知否课堂后台管理系统</p>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="ruleForm" :model="form" :rules="rules">
         <el-form-item prop="username">
           <el-input
             placeholder="请输入管理员账号"
-            v-model="input1"
+            v-model="form.username"
             prefix-icon="el-icon-user"
           />
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+            type="password"
             placeholder="请输入管理员密码"
-            v-model="input1"
+            v-model="form.password"
             prefix-icon="el-icon-lock"
           />
         </el-form-item>
         <el-form-item>
-          <el-button style="background: #5b89fe; color: white">登录</el-button>
+          <el-button
+            style="background: #5b89fe; color: white"
+            @click="submitForm('ruleForm')"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
     <!-- 外部logo展示 -->
-    <el-image class="wechat_logo" :src="wechat_img" :fit="cover"></el-image>
-    <el-image
-      class="offical_img"
-      :src="officalAccount_img"
-      :fit="cover"
-    ></el-image>
-    <el-image class="home_logo" :src="home_img" :fit="cover"></el-image>
-    <el-image class="juejin_img" :src="juejin_img" :fit="cover"></el-image>
+    <div>
+      <el-image class="wechat_logo" :src="wechat_img" fit="cover"></el-image>
+      <el-image
+        class="offical_img"
+        :src="officalAccount_img"
+        fit="cover"
+      ></el-image>
+      <el-image class="home_logo" :src="home_img" fit="cover"></el-image>
+      <el-image class="juejin_img" :src="juejin_img" fit="cover"></el-image>
+    </div>
     <!-- footer -->
     <p class="footer">Copyright © ZhiFou All Rights Reserved</p>
   </div>
@@ -61,8 +68,18 @@ export default {
       },
     };
   },
-  created() {},
-  mounted() {},
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        // 表单校验通过
+        if (valid) {
+          this.$router.push("/home");
+        } else {
+          return false;
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -77,9 +94,10 @@ export default {
   background-size: 100% 100%;
 }
 .login_card {
-  width: 20%;
+  width: 22%;
+  min-width: 300px;
   margin: 0 auto;
-  height: 50%;
+  height: 60%;
   margin-top: 10%;
   border-radius: 10px;
   text-align: center;
@@ -97,13 +115,10 @@ export default {
   letter-spacing: 2px;
   color: #999a9a;
 }
-
-.el-form-item {
-  margin-left: -80px;
-}
 .el-input,
 .el-button {
-  width: 300px;
+  width: 275px;
+  min-width: 275px;
 }
 .footer {
   position: absolute;

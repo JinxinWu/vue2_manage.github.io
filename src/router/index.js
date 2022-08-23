@@ -5,26 +5,29 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history', // 去掉路径中的 # 号
   routes: [{
-      path: '/',
-      redirect: 'login'
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      // 页面标题 title
+      title: '登录'
     },
-    {
-      path: '/login',
-      name: 'login',
-      meta: {
-        // 页面标题 title
-        title: '登录'
-      },
-      component: () => import('@/view/Login.vue')
+    component: () => import('@/view/Login.vue')
+  },
+  {
+    path: '/home',
+    meta: {
+      // 页面标题 title
+      title: '主页'
     },
-    {
-      path: '/home',
-      meta: {
-        // 页面标题 title
-        title: '主页'
-      },
-      component: () => import('@/view/Home.vue')
-    },
+    component: () => import('@/view/Home.vue'),
+    redirect: '/welcome',
+    children: [{ path: '/welcome', name: '首页', component: () => import('@/view/Welcome.vue') },
+    ]
+  },
   ]
 })
 // 挂载路由导航守卫：to表示将要访问的路径，from表示从哪里来，next是下一个要做的操作

@@ -30,9 +30,9 @@
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
-            @close="handleClose">
-            <el-menu-item index="2">
+          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse"
+            @open="handleOpen" @close="handleClose">
+            <el-menu-item index="/welcome" @click="saveActiveNav('/welcome')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
             </el-menu-item>
@@ -43,7 +43,7 @@
               </template>
               <el-menu-item index="1-4-1">权限管理</el-menu-item>
             </el-submenu>
-            <el-menu-item index="2">
+            <el-menu-item index='/user' @click="saveActiveNav('/user')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
@@ -80,13 +80,23 @@ export default {
     return {
       avatar: require("@/assets/img/avator.jpg"),
       isCollapse: false,
+      // 被激活的链接地址,默认是首页
+      activePath: "",
     };
   },
-  created() { },
+  created() {
+    this.activePath = sessionStorage.getItem("activePath") ? sessionStorage.getItem("activePath") : '/welcome';
+  },
   mounted() {
     console.log(this.$route.query.name);
   },
-  methods: {},
+  methods: {
+    // 保存链接的激活状态
+    saveActiveNav(activePath) {
+      sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
+    },
+  },
 };
 </script>
 

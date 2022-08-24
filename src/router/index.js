@@ -25,7 +25,8 @@ const router = new Router({
     },
     component: () => import('@/view/Home.vue'),
     redirect: '/welcome',
-    children: [{ path: '/welcome', name: '首页', component: () => import('@/view/Welcome.vue') },
+    children: [{ path: '/welcome', name: 'welcome', component: () => import('@/view/Welcome.vue') },
+    { path: '/user', name: 'user', component: () => import('@/view/user/Index.vue') }
     ]
   },
   ]

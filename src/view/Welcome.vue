@@ -81,7 +81,7 @@ export default {
             name: '2022-人数增长情况',
             data: [150, 230, 224, 218, 135, 147, 260],
             type: 'line',
-            
+
           }
         ]
       };
@@ -102,6 +102,7 @@ export default {
   justify-content: space-around;
   background: white;
   height: 200px;
+  min-width: 800px;
   border-radius: 8px;
 }
 
@@ -109,6 +110,7 @@ export default {
   height: 150px;
   background: white;
   width: 260px;
+  min-width: 150px;
   align-self: center;
   text-align: center;
 }
@@ -128,11 +130,13 @@ export default {
   justify-content: space-between;
   height: 380px;
   border-radius: 8px;
+  width: 100%;
 }
 
 .e-chart {
-  padding-top:10px;
-  width: 580px;
-  height: 400px;
+  padding-top: 10px;
+  width: 49%;
+  height: auto;
+  min-width: 500px;
 }
 </style>

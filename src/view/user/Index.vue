@@ -16,6 +16,12 @@
               placeholder="请输入用户名称"
             />
           </el-form-item>
+          <el-form-item label="性别:" prop="sex">
+            <el-select v-model="searchForm.sex" placeholder="请选择用户性别">
+              <el-option label="女" value="0"></el-option>
+              <el-option label="男" value="1"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
@@ -40,12 +46,7 @@
             <el-button
               type="primary"
               size="small"
-              @click="
-                changeView(
-                  '/purchaseManage/consolePlatform/purchaseApplyExpertAdd',
-                  { hjbh: hjbh }
-                )
-              "
+              @click="changeView('/userAdd', { hjbh: hjbh })"
             >
               新增用户</el-button
             >
@@ -59,25 +60,26 @@
               v-model="searchForm.state"
             >
               <el-radio-button label="">全部</el-radio-button>
-              <el-radio-button label="0">编辑中</el-radio-button>
-              <el-radio-button label="1">待审核</el-radio-button>
-              <el-radio-button label="2">已审核</el-radio-button>
-              <el-radio-button label="4">已抽取</el-radio-button>
+              <el-radio-button label="0">正常</el-radio-button>
+              <el-radio-button label="1">已注销</el-radio-button>
             </el-radio-group>
           </div>
         </el-col>
       </el-row>
       <!-- 表格 -->
       <el-table ref="table" v-loading="searchLoading" :data="tableData" border>
-        <el-table-column
-          prop="name"
-          label="评委会名称"
-          width="350"
-          show-overflow-tooltip
-        />
+        <el-table-column type="index" label="序号" width="50" />
+        <el-table-column prop="name" label="姓名" show-overflow-tooltip />
+        <el-table-column prop="sex" label="性别" show-overflow-tooltip />
+        <el-table-column prop="nickname" label="昵称" show-overflow-tooltip />
+        <el-table-column prop="mobile" label="手机号" show-overflow-tooltip />
         <el-table-column prop="stateName" label="状态" show-overflow-tooltip />
         <el-table-column label="操作" width="330">
-          <template slot-scope="scope"> </template>
+          <template slot-scope="scope">
+            <el-button type="success" size="small">编辑</el-button>
+            <el-button type="danger" size="small">删除</el-button>
+            <el-button size="small">详情</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -103,10 +105,76 @@ export default {
         current: 1,
         size: 10,
         name: "",
-        state: "0",
+        sex: "",
+        state: "",
       },
       total: 0,
-      tableData: [],
+      tableData: [
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+        {
+          name: "知否君",
+          sex: 0,
+          nickname: "老师好我是知否君",
+          mobile: "19999999999",
+          state: 0,
+          stateName: "正常",
+        },
+      ],
     };
   },
   created() {},

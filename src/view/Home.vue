@@ -45,7 +45,7 @@
             @open="handleOpen"
             @close="handleClose"
           >
-            <el-menu-item index="/welcome" @click="saveActiveNav('/welcome')">
+            <el-menu-item index="/index" @click="saveActiveNav('/index')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
             </el-menu-item>
@@ -76,6 +76,8 @@
         </el-aside>
         <el-container>
           <el-main>
+            <!-- 面包屑 -->
+            <Breadcrumb />
             <!-- 主要内容 -->
             <router-view></router-view>
           </el-main>
@@ -87,7 +89,9 @@
 </template>
 
 <script>
+import Breadcrumb from "../components/Breadcrumb.vue";
 export default {
+  components: { Breadcrumb },
   data() {
     return {
       avatar: require("@/assets/img/avator.jpg"),
@@ -99,7 +103,7 @@ export default {
   created() {
     this.activePath = sessionStorage.getItem("activePath")
       ? sessionStorage.getItem("activePath")
-      : "/welcome";
+      : "/index";
   },
   mounted() {
     console.log(this.$route.query.name);

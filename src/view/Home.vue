@@ -8,7 +8,7 @@
             <p class="system-name">知否课堂后台管理系统</p>
           </el-col>
           <el-col :offset="12" :span="8" style="min-width:150px">
-            <el-dropdown style="float:right;margin-top:20px">
+            <el-dropdown style="float:right;margin:20px 10px">
               <span class="el-dropdown-link" style="color:#fff;cursor: pointer;">
                 知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>

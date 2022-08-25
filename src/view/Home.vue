@@ -7,9 +7,12 @@
           <el-col :span="4">
             <p class="system-name">知否课堂后台管理系统</p>
           </el-col>
-          <el-col :offset="12" :span="8" style="min-width:150px">
-            <el-dropdown style="float:right;margin:20px 10px">
-              <span class="el-dropdown-link" style="color:#fff;cursor: pointer;">
+          <el-col :offset="12" :span="8" style="min-width: 150px">
+            <el-dropdown style="float: right; margin: 20px 10px">
+              <span
+                class="el-dropdown-link"
+                style="color: #fff; cursor: pointer"
+              >
                 知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
@@ -18,20 +21,30 @@
                 <el-dropdown-item>退出系统</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <el-avatar shape="square" :src="avatar" style="margin:10px;float:right"></el-avatar>
+            <el-avatar
+              shape="square"
+              :src="avatar"
+              style="margin: 10px; float: right"
+            ></el-avatar>
           </el-col>
         </el-row>
       </el-header>
 
-      <el-container style="overflow:auto;">
+      <el-container style="overflow: auto">
         <!-- 菜单 -->
         <el-aside>
           <div class="toggle-button" @click="isCollapse = !isCollapse">
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse"
-            @open="handleOpen" @close="handleClose">
+          <el-menu
+            router
+            :default-active="activePath"
+            class="el-menu-vertical-demo"
+            :collapse="isCollapse"
+            @open="handleOpen"
+            @close="handleClose"
+          >
             <el-menu-item index="/welcome" @click="saveActiveNav('/welcome')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
@@ -43,7 +56,7 @@
               </template>
               <el-menu-item index="1-4-1">权限管理</el-menu-item>
             </el-submenu>
-            <el-menu-item index='/user' @click="saveActiveNav('/user')">
+            <el-menu-item index="/user" @click="saveActiveNav('/user')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
@@ -60,7 +73,6 @@
               <span slot="title">文章管理</span>
             </el-menu-item>
           </el-menu>
-
         </el-aside>
         <el-container>
           <el-main>
@@ -85,7 +97,9 @@ export default {
     };
   },
   created() {
-    this.activePath = sessionStorage.getItem("activePath") ? sessionStorage.getItem("activePath") : '/welcome';
+    this.activePath = sessionStorage.getItem("activePath")
+      ? sessionStorage.getItem("activePath")
+      : "/welcome";
   },
   mounted() {
     console.log(this.$route.query.name);
@@ -93,8 +107,8 @@ export default {
   methods: {
     // 保存链接的激活状态
     saveActiveNav(activePath) {
-      sessionStorage.setItem('activePath', activePath)
-      this.activePath = activePath
+      sessionStorage.setItem("activePath", activePath);
+      this.activePath = activePath;
     },
   },
 };
@@ -141,7 +155,6 @@ export default {
   color: #cccccc;
   text-align: center;
   line-height: 60px;
-  font-size: 12px;
 }
 
 .el-footer:hover {

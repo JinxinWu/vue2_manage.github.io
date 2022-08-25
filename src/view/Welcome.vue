@@ -102,6 +102,7 @@ export default {
 
 <style scoped>
 .content {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -135,7 +136,7 @@ export default {
 }
 .chart {
   flex: 1;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;

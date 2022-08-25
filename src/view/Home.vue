@@ -9,10 +9,7 @@
           </el-col>
           <el-col :offset="12" :span="8" style="min-width: 150px">
             <el-dropdown style="float: right; margin: 20px 10px">
-              <span
-                class="el-dropdown-link"
-                style="color: #fff; cursor: pointer"
-              >
+              <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
                 知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
@@ -21,11 +18,7 @@
                 <el-dropdown-item>退出系统</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <el-avatar
-              shape="square"
-              :src="avatar"
-              style="margin: 10px; float: right"
-            ></el-avatar>
+            <el-avatar shape="square" :src="avatar" style="margin: 10px; float: right"></el-avatar>
           </el-col>
         </el-row>
       </el-header>
@@ -37,14 +30,7 @@
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu
-            router
-            :default-active="activePath"
-            class="el-menu-vertical-demo"
-            :collapse="isCollapse"
-            @open="handleOpen"
-            @close="handleClose"
-          >
+          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse">
             <el-menu-item index="/index" @click="saveActiveNav('/index')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
@@ -56,7 +42,7 @@
               </template>
               <el-menu-item index="1-4-1">权限管理</el-menu-item>
             </el-submenu>
-            <el-menu-item index="/user" @click="saveActiveNav('/user')">
+            <el-menu-item index="/userManage" @click="saveActiveNav('/userManage')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
@@ -179,5 +165,17 @@ export default {
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+}
+
+.el-menu-item.is-active {
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #2661ef !important;
+  border-radius: 2px;
+  height: 50px;
+  line-height: 50px;
+  box-sizing: border-box;
+  margin: 2px 5px 0px 2px;
 }
 </style>

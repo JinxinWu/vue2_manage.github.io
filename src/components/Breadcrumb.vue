@@ -1,11 +1,8 @@
 <template>
-  <div class="content">
+  <div>
     <!-- 面包屑 -->
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item
-        v-for="item in breadcrumbList"
-        :key="'breadcrumb_' + item.path"
-      >
+      <el-breadcrumb-item v-for="item in breadcrumbList" :key="'breadcrumb_' + item.path">
         {{ item.meta.title }}
       </el-breadcrumb-item>
     </el-breadcrumb>
@@ -19,9 +16,6 @@ export default {
   },
   computed: {
     breadcrumbList() {
-      if (this.$route.path === "/index") {
-        return [this.$route.matched[0]];
-      }
       return this.$route.matched;
     },
   },

@@ -4,7 +4,8 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history', // 去掉路径中的 # 号
-  routes: [{
+  routes: [
+    {
       path: '/',
       redirect: '/login'
     },
@@ -12,36 +13,47 @@ const router = new Router({
       path: '/login',
       name: 'login',
       meta: {
-        // 页面标题 title
         title: '登录'
       },
       component: () => import('@/view/Login.vue')
     },
+
     {
       path: '/home',
       meta: {
-        // 页面标题 title
         title: '主页'
       },
       component: () => import('@/view/Home.vue'),
       redirect: '/index',
-      children: [{
+      children: [
+        {
           path: '/index',
-          name: 'index',
           meta: {
             title: '首页'
           },
           component: () => import('@/view/Welcome.vue')
         },
         {
-          path: '/user',
-          name: 'user',
+          path: '/userManage',
           meta: {
-            // 页面标题 title
             title: '用户管理'
           },
-          component: () => import('@/view/user/Index.vue')
-        }
+          component: () => import('@/view/user/Index.vue'),
+        },
+        {
+          path: '/addUser',
+          meta: {
+            title: '用户管理 / 新增用户'
+          },
+          component: () => import('@/view/user/Add.vue'),
+        },
+        {
+          path: '/updateUser',
+          meta: {
+            title: '用户管理 / 编辑用户'
+          },
+          component: () => import('@/view/user/Add.vue'),
+        },
       ]
     },
   ]

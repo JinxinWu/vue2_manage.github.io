@@ -24,7 +24,7 @@
       <el-row class="rowSpace">
         <el-col :span="3">
           <div>
-            <el-button type="primary" size="small" @click="changeView('/addUser')">
+            <el-button type="primary" size="small" @click="changeView('/user/add')">
               新增用户</el-button>
           </div>
         </el-col>

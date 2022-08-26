@@ -42,7 +42,7 @@
               </template>
               <el-menu-item index="1-4-1">权限管理</el-menu-item>
             </el-submenu>
-            <el-menu-item index="/userManage" @click="saveActiveNav('/userManage')">
+            <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>

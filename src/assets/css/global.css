@@ -7,6 +7,12 @@
   line-height: 40px;
   color: #283543;
 }
+/* 滚动条样式优化 */
+::-webkit-scrollbar {
+  width: 5px;
+  background: #cccccc;
+  border-radius: 4px;
+}
 
 .content {
   margin: 20px 0px;

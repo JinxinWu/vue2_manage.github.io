@@ -3,9 +3,18 @@
     <el-card shadow="never">
       <!-- 查询 -->
       <el-row type="flex" justify="space-between">
-        <el-form ref="searchForm" :model="searchForm" size="small" class="demo-form-inline" inline>
+        <el-form
+          ref="searchForm"
+          :model="searchForm"
+          size="small"
+          class="demo-form-inline"
+          inline
+        >
           <el-form-item label="用户名称:" prop="name">
-            <el-input v-model.trim="searchForm.name" placeholder="请输入用户名称" />
+            <el-input
+              v-model.trim="searchForm.name"
+              placeholder="请输入用户名称"
+            />
           </el-form-item>
           <el-form-item label="性别:" prop="sex">
             <el-select v-model="searchForm.sex" placeholder="请选择用户性别">
@@ -14,23 +23,42 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" size="small" :loading="searchLoading"
-              @click="handleSearch()">查询
+            <el-button
+              type="primary"
+              icon="el-icon-search"
+              size="small"
+              :loading="searchLoading"
+              @click="handleSearch()"
+              >查询
             </el-button>
-            <el-button size="small" icon="el-icon-refresh-right" @click="handleClear()">重置</el-button>
+            <el-button
+              size="small"
+              icon="el-icon-refresh-right"
+              @click="handleClear()"
+              >重置</el-button
+            >
           </el-form-item>
         </el-form>
       </el-row>
       <el-row class="rowSpace">
         <el-col :span="3">
           <div>
-            <el-button type="primary" size="small" @click="changeView('/user/add')">
-              新增用户</el-button>
+            <el-button
+              type="primary"
+              size="small"
+              @click="changeView('/user/add')"
+            >
+              新增用户</el-button
+            >
           </div>
         </el-col>
         <el-col :span="13">
           <div>
-            <el-radio-group size="small" @change="changeRadio($event)" v-model="searchForm.state">
+            <el-radio-group
+              size="small"
+              @change="changeRadio($event)"
+              v-model="searchForm.state"
+            >
               <el-radio-button label="">全部</el-radio-button>
               <el-radio-button label="0">正常</el-radio-button>
               <el-radio-button label="1">已注销</el-radio-button>
@@ -45,7 +73,7 @@
         <el-table-column prop="sex" label="性别" show-overflow-tooltip>
           <template slot-scope="scope">
             <div>
-              {{ scope.row.sex == 0 ? '女' : '男' }}
+              {{ scope.row.sex == 0 ? "女" : "男" }}
             </div>
           </template>
         </el-table-column>
@@ -54,8 +82,12 @@
         <el-table-column prop="stateName" label="状态" show-overflow-tooltip />
         <el-table-column label="操作" width="330">
           <template slot-scope="scope">
-            <el-button type="success" size="small" @click="changeView('/updateUser')">编辑</el-button>
-            <el-button type="danger" size="small">删除</el-button>
+            <el-button
+              type="danger"
+              size="small"
+              @click="deleteUser(scope.row.id)"
+              >删除</el-button
+            >
             <el-button size="small">详情</el-button>
           </template>
         </el-table-column>
@@ -149,10 +181,35 @@ export default {
       ],
     };
   },
-  created() {
-
-  },
+  created() {},
   methods: {
+    deleteUser(id) {
+      this.$confirm("确认要删除该用户吗, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 删除逻辑
+          this.$axios
+            .delete(url, {
+              params: { id: id },
+            })
+            .then((res) => {
+              if (res.data.success) {
+                this.$message({ message: "删除成功！", type: "success" });
+              } else {
+                this.$message.error(res.data.message);
+              }
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
     // 路由跳转
     changeView(url, queryParams) {
       console.log(url);

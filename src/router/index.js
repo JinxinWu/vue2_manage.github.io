@@ -38,20 +38,6 @@ const router = new Router({
           },
           component: () => import('@/view/user/Index.vue'),
         },
-        {
-          path: '/user/add',
-          meta: {
-            title: '新增用户'
-          },
-          component: () => import('@/view/user/Add.vue'),
-        },
-        {
-          path: '/user/update',
-          meta: {
-            title: '编辑用户'
-          },
-          component: () => import('@/view/user/Add.vue'),
-        },
       ]
     },
   ]

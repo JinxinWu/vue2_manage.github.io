@@ -41,18 +41,7 @@
         </el-form>
       </el-row>
       <el-row class="rowSpace">
-        <el-col :span="3">
-          <div>
-            <el-button
-              type="primary"
-              size="small"
-              @click="changeView('/user/add')"
-            >
-              新增用户</el-button
-            >
-          </div>
-        </el-col>
-        <el-col :span="13">
+        <el-col>
           <div>
             <el-radio-group
               size="small"
@@ -93,9 +82,16 @@
         </el-table-column>
       </el-table>
       <!-- 分页 -->
-      <!-- <el-pagination class="pagination" layout="->,total, sizes, prev, pager, next, jumper"
-        :page-sizes="[10, 20, 30, 40]" :current-page="searchForm.current" :page-size="searchForm.size" :total="total"
-        @size-change="handleSizeChange" @current-change="handleCurrentChange" /> -->
+      <el-pagination
+        class="pagination"
+        layout="->,total, sizes, prev, pager, next, jumper"
+        :page-sizes="[10, 20, 30, 40]"
+        :current-page="searchForm.current"
+        :page-size="searchForm.size"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </el-card>
   </div>
 </template>
@@ -122,67 +118,49 @@ export default {
           state: 0,
           stateName: "正常",
         },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
-        {
-          name: "知否君",
-          sex: 1,
-          nickname: "老师好我是知否君",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
       ],
     };
   },
   created() {},
   methods: {
+    async getPageList() {
+      const result = await this.$axios.get(url, {
+        params: this.searchForm,
+      });
+      if (result.data.success) {
+        this.tableData = result.data.data.records;
+        this.total = result.data.data.total;
+      } else {
+        this.$message.error(result.data.message);
+      }
+    },
+    // 切换tab
+    changeRadio(value) {
+      this.searchForm.state = value;
+      this.getPageList();
+    },
+    //搜索
+    handleSearch() {
+      this.searchForm.current = 1;
+      this.getPageList();
+    },
+    //重置
+    handleClear() {
+      this.$refs["searchForm"].resetFields();
+      this.getPageList();
+    },
+    // 切换每页显示条数
+    handleSizeChange(val) {
+      this.searchForm.size = val;
+      this.searchForm.current = 1;
+      this.getPageList();
+    },
+    // 点击某一页，跳转某一页
+    handleCurrentChange(val) {
+      this.searchForm.current = val;
+      this.getPageList();
+    },
+    // 删除
     deleteUser(id) {
       this.$confirm("确认要删除该用户吗, 是否继续?", "提示", {
         confirmButtonText: "确定",

@@ -9,18 +9,57 @@
           </el-col>
           <el-col :offset="12" :span="8" style="min-width: 150px">
             <el-dropdown style="float: right; margin: 20px 10px">
-              <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
+              <span
+                class="el-dropdown-link"
+                style="color: #fff; cursor: pointer"
+              >
                 知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>个人信息</el-dropdown-item>
-                <el-dropdown-item>修改密码</el-dropdown-item>
+                <el-dropdown-item @click.native="editPassDialog = true"
+                  >修改密码</el-dropdown-item
+                >
                 <el-dropdown-item>退出系统</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <el-avatar shape="square" :src="avatar" style="margin: 10px; float: right"></el-avatar>
+            <el-avatar
+              shape="square"
+              :src="avatar"
+              style="margin: 10px; float: right"
+            ></el-avatar>
           </el-col>
         </el-row>
+        <!-- 修改密码 dialog -->
+        <el-dialog
+          title="修改密码"
+          :visible.sync="editPassDialog"
+          width="30%"
+          :before-close="closeEditPass"
+        >
+          <el-form label-width="80px">
+            <el-form-item label="原密码:">
+              <el-input v-model="editPassForm.oldPass" placeholder="请输入原密码" />
+            </el-form-item>
+            <el-form-item label="新密码:">
+              <el-input v-model="editPassForm.newPass" placeholder="请输入新密码" />
+            </el-form-item>
+            <el-form-item label="确认密码:">
+              <el-input v-model="editPassForm.confirmPass" placeholder="请确认密码" />
+            </el-form-item>
+          </el-form>
+
+          <span slot="footer" class="dialog-footer">
+            <el-button size="small" @click="editPassDialog = false"
+              >取 消</el-button
+            >
+            <el-button
+              size="small"
+              type="primary"
+              @click="dialogVisible = false"
+              >确 定</el-button
+            >
+          </span>
+        </el-dialog>
       </el-header>
 
       <el-container style="overflow: auto">
@@ -30,7 +69,12 @@
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse">
+          <el-menu
+            router
+            :default-active="activePath"
+            class="el-menu-vertical-demo"
+            :collapse="isCollapse"
+          >
             <el-menu-item index="/index" @click="saveActiveNav('/index')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
@@ -42,7 +86,10 @@
               </template>
               <el-menu-item index="1-4-1">权限管理</el-menu-item>
             </el-submenu>
-            <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
+            <el-menu-item
+              index="/user/list"
+              @click="saveActiveNav('/user/list')"
+            >
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
@@ -84,6 +131,12 @@ export default {
       isCollapse: false,
       // 被激活的链接地址,默认是首页
       activePath: "",
+      editPassDialog: false,
+      editPassForm: {
+        oldPass: "",
+        newPass: "",
+        confirmPass: "",
+      },
     };
   },
   created() {
@@ -99,6 +152,9 @@ export default {
     saveActiveNav(activePath) {
       sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
+    },
+    closeEditPass() {
+      this.editPassDialog = false;
     },
   },
 };

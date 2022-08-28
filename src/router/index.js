@@ -38,6 +38,13 @@ const router = new Router({
           },
           component: () => import('@/view/user/Index.vue'),
         },
+        {
+          path: '/user/detail',
+          meta: {
+            title: '用户详情'
+          },
+          component: () => import('@/view/user/Detail.vue'),
+        },
       ]
     },
   ]

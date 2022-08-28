@@ -77,7 +77,7 @@
               @click="deleteUser(scope.row.id)"
               >删除</el-button
             >
-            <el-button size="small">详情</el-button>
+            <el-button size="small" @click="changeView('/user/detail')">详情</el-button>
           </template>
         </el-table-column>
       </el-table>

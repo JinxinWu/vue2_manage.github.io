@@ -38,13 +38,22 @@
         >
           <el-form label-width="80px">
             <el-form-item label="原密码:">
-              <el-input v-model="editPassForm.oldPass" placeholder="请输入原密码" />
+              <el-input
+                v-model="editPassForm.oldPass"
+                placeholder="请输入原密码"
+              />
             </el-form-item>
             <el-form-item label="新密码:">
-              <el-input v-model="editPassForm.newPass" placeholder="请输入新密码" />
+              <el-input
+                v-model="editPassForm.newPass"
+                placeholder="请输入新密码"
+              />
             </el-form-item>
             <el-form-item label="确认密码:">
-              <el-input v-model="editPassForm.confirmPass" placeholder="请确认密码" />
+              <el-input
+                v-model="editPassForm.confirmPass"
+                placeholder="请确认密码"
+              />
             </el-form-item>
           </el-form>
 
@@ -97,7 +106,10 @@
               <i class="el-icon-tickets"></i>
               <span slot="title">订单管理</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item
+              index="/course/list"
+              @click="saveActiveNav('/course/list')"
+            >
               <i class="el-icon-notebook-1"></i>
               <span slot="title"> 课程管理</span>
             </el-menu-item>

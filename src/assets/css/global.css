@@ -10,6 +10,7 @@
 /* 滚动条样式优化 */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   background: #cccccc;
   border-radius: 4px;
 }

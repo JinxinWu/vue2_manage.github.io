@@ -56,7 +56,7 @@
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 联系地址 </template>
-          江苏省苏州市吴中区吴中大道 1188 号
+          知否学堂科学大道
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 标签 </template>

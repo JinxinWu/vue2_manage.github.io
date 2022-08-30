@@ -45,6 +45,34 @@ const router = new Router({
           },
           component: () => import('@/view/user/Detail.vue'),
         },
+        {
+          path: '/course/list',
+          meta: {
+            title: '课程管理'
+          },
+          component: () => import('@/view/course/Index.vue'),
+        },
+        {
+          path: '/course/add',
+          meta: {
+            title: '新增课程'
+          },
+          component: () => import('@/view/course/Add.vue'),
+        },
+        {
+          path: '/course/update',
+          meta: {
+            title: '编辑课程'
+          },
+          component: () => import('@/view/course/Add.vue'),
+        },
+        {
+          path: '/course/detail',
+          meta: {
+            title: '课程详情'
+          },
+          component: () => import('@/view/course/Detail.vue'),
+        },
       ]
     },
   ]

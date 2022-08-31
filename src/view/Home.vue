@@ -19,7 +19,9 @@
                 <el-dropdown-item @click.native="editPassDialog = true"
                   >修改密码</el-dropdown-item
                 >
-                <el-dropdown-item>退出系统</el-dropdown-item>
+                <el-dropdown-item @click.native="logout()"
+                  >退出系统</el-dropdown-item
+                >
               </el-dropdown-menu>
             </el-dropdown>
             <el-avatar
@@ -35,8 +37,14 @@
           :visible.sync="editPassDialog"
           width="30%"
           :before-close="closeEditPass"
+          :close-on-click-modal="false"
         >
-          <el-form label-width="80px">
+          <el-form
+            ref="editPassForm"
+            class="demo-form-inline"
+            :model="editPassForm"
+            label-width="80px"
+          >
             <el-form-item label="原密码:">
               <el-input
                 v-model="editPassForm.oldPass"
@@ -55,19 +63,11 @@
                 placeholder="请确认密码"
               />
             </el-form-item>
+            <el-form-item>
+              <el-button size="small" @click="closeEditPass()">取 消</el-button>
+              <el-button size="small" type="primary">保 存</el-button>
+            </el-form-item>
           </el-form>
-
-          <span slot="footer" class="dialog-footer">
-            <el-button size="small" @click="editPassDialog = false"
-              >取 消</el-button
-            >
-            <el-button
-              size="small"
-              type="primary"
-              @click="dialogVisible = false"
-              >确 定</el-button
-            >
-          </span>
         </el-dialog>
       </el-header>
 
@@ -156,9 +156,6 @@ export default {
       ? sessionStorage.getItem("activePath")
       : "/index";
   },
-  mounted() {
-    console.log(this.$route.query.name);
-  },
   methods: {
     // 保存链接的激活状态
     saveActiveNav(activePath) {
@@ -166,18 +163,30 @@ export default {
       this.activePath = activePath;
     },
     closeEditPass() {
+      this.$refs.editPassForm.resetFields();
       this.editPassDialog = false;
+    },
+    // 退出系统
+    logout() {
+      this.$confirm("确定要退出系统吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 清除缓存
+          window.sessionStorage.clear();
+          this.$router.push("/login");
+        })
+        .catch(() => {
+          return false;
+        });
     },
   },
 };
 </script>
 
-<style >
-* {
-  margin: 0;
-  padding: 0;
-}
-
+<style  scoped>
 .home-container {
   position: absolute;
   height: 100%;
@@ -196,7 +205,6 @@ export default {
 .system-name {
   color: #fff;
   font-size: 18px;
-  line-height: 60px;
 }
 
 .el-aside {

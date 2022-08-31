@@ -23,6 +23,7 @@
         </el-form-item>
         <el-form-item>
           <el-button
+            :loading="loginLoading"
             style="background: #5b89fe; color: white"
             @click="submitForm('ruleForm')"
             >登录</el-button
@@ -58,6 +59,7 @@ export default {
         username: "",
         password: "",
       },
+      loginLoading: false,
       rules: {
         username: [
           { required: true, message: "请输入管理员账号", trigger: "blur" },
@@ -71,8 +73,24 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        // 表单校验通过
         if (valid) {
+          // this.loginLoading = true;
+          // this.$axios
+          //   .post("/auth/login", this.form)
+          //   .then((res) => {
+          //     if (res.data.success) {
+          //       sessionStorage.setItem("user",JSON.stringify(res.data.data.user));
+          //       sessionStorage.setItem("token", res.data.token);
+          //       this.$router.push("/home");
+          //     } else {
+          //       this.$message.error(res.data.msg);
+          //       this.loginLoading = false;
+          //     }
+          //   })
+          //   .catch((err) => {
+          //     this.$message.error("服务器连接失败，请稍后重试......");
+          //     this.loginLoading = false;
+          //   });
           this.$router.push("/home");
         } else {
           return false;

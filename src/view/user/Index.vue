@@ -27,7 +27,6 @@
               type="primary"
               icon="el-icon-search"
               size="small"
-              :loading="searchLoading"
               @click="handleSearch()"
               >查询
             </el-button>
@@ -56,7 +55,7 @@
         </el-col>
       </el-row>
       <!-- 表格 -->
-      <el-table ref="table" v-loading="searchLoading" :data="tableData" border>
+      <el-table ref="table" :data="tableData" border>
         <el-table-column type="index" label="序号" width="50" />
         <el-table-column prop="name" label="姓名" show-overflow-tooltip />
         <el-table-column prop="sex" label="性别" show-overflow-tooltip>
@@ -77,7 +76,9 @@
               @click="deleteUser(scope.row.id)"
               >删除</el-button
             >
-            <el-button size="small" @click="changeView('/user/detail')">详情</el-button>
+            <el-button size="small" @click="changeView('/user/detail')"
+              >详情</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -100,7 +101,6 @@
 export default {
   data() {
     return {
-      searchLoading: false,
       searchForm: {
         current: 1,
         size: 10,
@@ -108,7 +108,7 @@ export default {
         sex: "",
         state: "",
       },
-      total: 0,
+      total: 1,
       tableData: [
         {
           name: "知否君",
@@ -121,7 +121,9 @@ export default {
       ],
     };
   },
-  created() {},
+  created() {
+    this.getPageList();
+  },
   methods: {
     async getPageList() {
       const result = await this.$axios.get(url, {
@@ -146,7 +148,7 @@ export default {
     },
     //重置
     handleClear() {
-      this.$refs["searchForm"].resetFields();
+      this.$refs.searchForm.resetFields();
       this.getPageList();
     },
     // 切换每页显示条数

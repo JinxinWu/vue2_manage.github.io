@@ -16,7 +16,7 @@
                 知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native="editPassDialog = true"
+                <el-dropdown-item @click.native="editPasswordDialog = true"
                   >修改密码</el-dropdown-item
                 >
                 <el-dropdown-item @click.native="logout()"
@@ -34,38 +34,39 @@
         <!-- 修改密码 dialog -->
         <el-dialog
           title="修改密码"
-          :visible.sync="editPassDialog"
+          :visible.sync="editPasswordDialog"
           width="30%"
-          :before-close="closeEditPass"
+          :before-close="closeEditPassword"
           :close-on-click-modal="false"
         >
           <el-form
-            ref="editPassForm"
+            ref="editPasswordForm"
+            :rules="editPasswordRule"
             class="demo-form-inline"
-            :model="editPassForm"
-            label-width="80px"
+            :model="editPasswordForm"
+            label-width="90px"
           >
-            <el-form-item label="原密码:">
+            <el-form-item label="原密码:" prop="oldPassword">
               <el-input
-                v-model="editPassForm.oldPass"
+                v-model="editPasswordForm.oldPassword"
                 placeholder="请输入原密码"
               />
             </el-form-item>
-            <el-form-item label="新密码:">
+            <el-form-item label="新密码:" prop="newPassword">
               <el-input
-                v-model="editPassForm.newPass"
+                v-model="editPasswordForm.newPassword"
                 placeholder="请输入新密码"
               />
             </el-form-item>
-            <el-form-item label="确认密码:">
+            <el-form-item label="确认密码:" prop="confirmPassword">
               <el-input
-                v-model="editPassForm.confirmPass"
+                v-model="editPasswordForm.confirmPassword"
                 placeholder="请确认密码"
               />
             </el-form-item>
             <el-form-item>
-              <el-button size="small" @click="closeEditPass()">取 消</el-button>
-              <el-button size="small" type="primary">保 存</el-button>
+              <el-button size="small" @click="closeEditPassword()">取 消</el-button>
+              <el-button size="small" type="primary" @click="editPassword()">保 存</el-button>
             </el-form-item>
           </el-form>
         </el-dialog>
@@ -143,11 +144,22 @@ export default {
       isCollapse: false,
       // 被激活的链接地址,默认是首页
       activePath: "",
-      editPassDialog: false,
-      editPassForm: {
-        oldPass: "",
-        newPass: "",
-        confirmPass: "",
+      editPasswordDialog: false,
+      editPasswordForm: {
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      },
+      editPasswordRule: {
+        oldPassword: [
+          { required: true, message: "请输入原密码", trigger: "blur" },
+        ],
+        newPassword: [
+          { required: true, message: "请输入新密码", trigger: "blur" },
+        ],
+        confirmPassword: [
+          { required: true, message: "请确认新密码", trigger: "blur" },
+        ],
       },
     };
   },
@@ -162,9 +174,32 @@ export default {
       sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
     },
-    closeEditPass() {
-      this.$refs.editPassForm.resetFields();
-      this.editPassDialog = false;
+    // 修改密码
+    editPassword() {
+      this.$refs.editPasswordForm.validate(async (valid) => {
+        if (!valid) return;
+        if (this.editPasswordForm.newPassword != this.editPasswordForm.confirmPassword) {
+          return this.$message.error("两次密码不正确，请重新输入！");
+        }
+        // 请求接口
+        const { data: res } = await this.$axios.post(
+          "/user/updatePasswordword",
+          this.editPasswordForm
+        );
+        if (res.success) {
+          this.$message.success("密码修改成功，请重新登录！");
+          sessionStorage.clear();
+          this.$router.push("/login");
+        } else {
+          return this.$message.error(res.msg);
+        }
+      });
+    },
+    // 取消关闭密码
+    closeEditPassword() {
+      this.editPasswordDialog = false;
+      // 坑：resetFields 方法只能重置带有 props 属性的元素
+      this.$refs.editPasswordForm.resetFields();
     },
     // 退出系统
     logout() {
@@ -175,7 +210,7 @@ export default {
       })
         .then(() => {
           // 清除缓存
-          window.sessionStorage.clear();
+          sessionStorage.clear();
           this.$router.push("/login");
         })
         .catch(() => {

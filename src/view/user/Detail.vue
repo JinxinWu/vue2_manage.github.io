@@ -13,7 +13,7 @@
           :size="150"
           :src="require('../../assets/img/avator.jpg')"
         ></el-avatar>
-        <h2 style="margin: 10px 0px">{{ userInfo.name ? "" : "知否君" }}</h2>
+        <h2 style="margin: 10px 0px">{{ userInfo.name ? "" : "唐三" }}</h2>
         <span
           style="
             border-right: 2px solid #d2d2d2;
@@ -36,15 +36,15 @@
       <el-descriptions class="margin-top" :column="3">
         <el-descriptions-item>
           <template slot="label"> 姓名 </template>
-          kooriookami
+          唐三
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 昵称 </template>
-          xxxxl
+          斗罗大陆唐三
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 手机号 </template>
-          18100000000
+          19999999999
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 性别 </template>

@@ -108,12 +108,12 @@ export default {
         sex: "",
         state: "",
       },
-      total: 1,
+      total: 1,// 初始化应为 0，这里只做演示效果使用
       tableData: [
         {
-          name: "知否君",
+          name: "唐三",
           sex: 1,
-          nickname: "老师好我是知否君",
+          nickname: "斗罗大陆唐三",
           mobile: "19999999999",
           state: 0,
           stateName: "正常",

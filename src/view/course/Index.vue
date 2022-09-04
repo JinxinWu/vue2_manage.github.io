@@ -16,12 +16,27 @@
               placeholder="请输入课程名称"
             />
           </el-form-item>
+          <el-form-item label="课程编号:" prop="code">
+            <el-input
+              v-model.trim="searchForm.code"
+              placeholder="请输入课程编号"
+            />
+          </el-form-item>
+          <el-form-item label="讲师:" prop="lecturer">
+            <el-select v-model="searchForm.lecturer" placeholder="请选择讲师">
+              <el-option
+                v-for="item in lecturerList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
               icon="el-icon-search"
               size="small"
-              :loading="searchLoading"
               @click="handleSearch()"
               >查询
             </el-button>
@@ -58,12 +73,12 @@
         </el-col>
       </el-row>
       <!-- 表格 -->
-      <el-table ref="table" v-loading="searchLoading" :data="tableData" border>
+      <el-table ref="table" :data="tableData" border>
         <el-table-column type="index" label="序号" width="50" />
         <el-table-column prop="name" label="课程名" show-overflow-tooltip />
         <el-table-column prop="code" label="课程编号" show-overflow-tooltip />
         <el-table-column prop="nickname" label="封面" show-overflow-tooltip />
-        <el-table-column prop="mobile" label="讲师" show-overflow-tooltip />
+        <el-table-column prop="lecturer" label="讲师" show-overflow-tooltip />
         <el-table-column prop="stateName" label="状态" show-overflow-tooltip />
         <el-table-column label="操作" width="360">
           <template slot-scope="scope">
@@ -82,13 +97,13 @@
             <el-button
               type="warning"
               size="small"
-              @click="deletecourse(scope.row.id)"
+              @click="changeCourseStatus(scope.row.id, 0)"
               >下架</el-button
             >
             <el-button
               type="primary"
               size="small"
-              @click="deletecourse(scope.row.id)"
+              @click="changeCourseStatus(scope.row.id, 1)"
               >上架</el-button
             >
             <el-button size="small" @click="changeView('/course/detail')"
@@ -116,28 +131,33 @@
 export default {
   data() {
     return {
-      searchLoading: false,
       searchForm: {
         current: 1,
         size: 10,
         name: "",
-        sex: "",
+        lecturer: "",
         state: "",
       },
-      total: 0,
+      total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
         {
-          name: "Vue电商管理系统",
+          id: 123123,
+          name: "抽丝剥茧Vue源码",
           code: "ZF00100",
           sex: 1,
           nickname: "老师好我是知否君",
           mobile: "19999999999",
           stateName: "已上架",
+          lecturer: "尤雨溪",
         },
       ],
+      lecturerList: [{ id: 123123, name: "尤雨溪" }],
     };
   },
-  created() {},
+  created() {
+    // 初始化表格数据
+    this.getPageList();
+  },
   methods: {
     async getPageList() {
       const result = await this.$axios.get(url, {
@@ -175,6 +195,35 @@ export default {
     handleCurrentChange(val) {
       this.searchForm.current = val;
       this.getPageList();
+    },
+    changeCourseStatus(id, status) {
+      let title = status == 0 ? "下架" : "上架";
+      this.$confirm("确认要【" + title + "】该课程吗, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 业务操作
+          this.$axios
+            .post("/course/changeStatus", {
+              id: id,
+              status: status,
+            })
+            .then((res) => {
+              if (res.data.success) {
+                this.$message({ message: title + "成功！", type: "success" });
+              } else {
+                this.$message.error(res.data.message);
+              }
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消操作",
+          });
+        });
     },
     // 删除
     deletecourse(id) {

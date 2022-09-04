@@ -106,9 +106,7 @@
               @click="changeCourseStatus(scope.row.id, 1)"
               >上架</el-button
             >
-            <el-button size="small" @click="changeView('/course/detail')"
-              >详情</el-button
-            >
+            <el-button size="small" @click="openDetail()">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -123,12 +121,17 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
+      <!-- 详情--->
+      <Detail ref="course_detail" />
     </el-card>
   </div>
 </template>
 
 <script>
+import Detail from "../course/Detail.vue";
 export default {
+  name: "courseManage",
+  components: { Detail },
   data() {
     return {
       searchForm: {
@@ -252,6 +255,9 @@ export default {
             message: "已取消删除",
           });
         });
+    },
+    openDetail() {
+      this.$refs.course_detail.drawer = true;
     },
     // 路由跳转
     changeView(url, queryParams) {

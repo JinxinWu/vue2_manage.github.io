@@ -73,7 +73,7 @@ export default {
 
       option = {
         legend: {
-          data: ["2022-人数增长情况"],
+          data: ["用户增长情况"],
         },
         xAxis: {
           type: "category",
@@ -84,7 +84,7 @@ export default {
         },
         series: [
           {
-            name: "2022-人数增长情况",
+            name: "用户增长情况",
             data: [150, 230, 224, 218, 135, 147, 260],
             type: "line",
           },

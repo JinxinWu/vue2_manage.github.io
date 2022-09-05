@@ -80,11 +80,19 @@
         <el-table-column prop="nickname" label="课程封面">
           <template slot-scope="scope">
             <div>
-              <el-image
-                style="height: 180px"
-                :src="scope.row.courseUrl"
-                fit="contain"
-              ></el-image>
+              <el-popover placement="right" trigger="hover">
+                <el-image
+                  style="height: 300px"
+                  :src="scope.row.courseUrl"
+                  fit="contain"
+                />
+                <el-image
+                  slot="reference"
+                  style="height: 100px; width: 100px"
+                  :src="scope.row.courseUrl"
+                  fit="contain"
+                />
+              </el-popover>
             </div>
           </template>
         </el-table-column>

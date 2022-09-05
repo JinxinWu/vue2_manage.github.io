@@ -88,7 +88,7 @@
                 />
                 <el-image
                   slot="reference"
-                  style="height: 100px; width: 100px"
+                  style="height: 100px"
                   :src="scope.row.courseUrl"
                   fit="contain"
                 />

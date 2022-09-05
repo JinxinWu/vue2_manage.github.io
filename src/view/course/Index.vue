@@ -77,7 +77,17 @@
         <el-table-column type="index" label="序号" width="50" />
         <el-table-column prop="name" label="课程名" show-overflow-tooltip />
         <el-table-column prop="code" label="课程编号" show-overflow-tooltip />
-        <el-table-column prop="nickname" label="封面" show-overflow-tooltip />
+        <el-table-column prop="nickname" label="课程封面">
+          <template slot-scope="scope">
+            <div>
+              <el-image
+                style="height: 180px"
+                :src="scope.row.courseUrl"
+                fit="contain"
+              ></el-image>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column prop="lecturer" label="讲师" show-overflow-tooltip />
         <el-table-column prop="stateName" label="状态" show-overflow-tooltip />
         <el-table-column label="操作" width="360">
@@ -128,6 +138,7 @@
 </template>
 
 <script>
+import { requireFileAsExpression } from "webpack/lib/ParserHelpers";
 import Detail from "../course/Detail.vue";
 export default {
   name: "courseManage",
@@ -148,13 +159,13 @@ export default {
           name: "抽丝剥茧Vue源码",
           code: "ZF00100",
           sex: 1,
-          nickname: "老师好我是知否君",
+          courseUrl: require("@/assets/img/courseurl.jpg"),
           mobile: "19999999999",
           stateName: "已上架",
-          lecturer: "尤雨溪",
+          lecturer: "知否君",
         },
       ],
-      lecturerList: [{ id: 123123, name: "尤雨溪" }],
+      lecturerList: [{ id: 123123, name: "知否君" }],
     };
   },
   created() {

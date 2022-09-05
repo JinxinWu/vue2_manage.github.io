@@ -85,7 +85,7 @@
             <el-button
               type="success"
               size="small"
-              @click="changeView('/course/update')"
+              @click="changeView('/course/update', { id: scope.row.id })"
               >编辑</el-button
             >
             <el-button

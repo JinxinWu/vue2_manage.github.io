@@ -1,12 +1,13 @@
 <template>
   <div class="content">
     <el-card>
-      <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="课程名称:">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+        <el-form-item label="课程名称:" prop="name">
           <el-input v-model="form.name" placeholder="请输入课程名称"></el-input>
         </el-form-item>
-        <el-form-item label="课程分类:">
+        <el-form-item label="课程分类:" prop="category">
           <el-cascader
+            placeholder="请选择课程分类"
             style="width: 440px"
             v-model="form.category"
             :options="categoryList"
@@ -22,7 +23,7 @@
             :precision="2"
           ></el-input-number>
         </el-form-item>
-        <el-form-item label="课程讲师:">
+        <el-form-item label="课程讲师:" prop="lecturer">
           <el-select v-model="form.lecturer" placeholder="请选择讲师">
             <el-option
               v-for="item in lecturerList"
@@ -33,34 +34,25 @@
           </el-select>
         </el-form-item>
         <el-form-item label="课程封面:">
-          <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            multiple
-            :limit="3"
-            :on-exceed="handleExceed"
-            :file-list="fileList"
-          >
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb
-            </div>
-          </el-upload>
+          <Upload
+            ref="uploadFile"
+            :upload-list="form.courseUrl"
+            @uploadFile="uploadFile"
+            @removeFile="removeFile"
+          />
         </el-form-item>
-        <el-form-item label="课程简介">
+        <el-form-item label="课程简介" prop="desc">
           <el-input
             style="width: 440px"
             maxlength="1000"
             show-word-limit
             type="textarea"
             v-model="form.desc"
+            placeholder="请输入课程简介"
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">确 认</el-button>
+          <el-button type="primary" @click="onSubmit('form')">保 存</el-button>
           <el-button @click="$router.go(-1)">取 消</el-button>
         </el-form-item>
       </el-form>
@@ -69,7 +61,9 @@
 </template>
 
 <script>
+import Upload from "../../components/Upload.vue";
 export default {
+  components: { Upload },
   data() {
     return {
       form: {
@@ -80,6 +74,7 @@ export default {
         category: "",
         price: "",
         desc: "",
+        courseUrl: "",
       },
       categoryList: [
         {
@@ -117,7 +112,85 @@ export default {
         { id: 123124, name: "知否君" },
         { id: 123125, name: "工藤新一" },
       ],
+      rules: {
+        name: [
+          {
+            required: true,
+            message: "请输入课程名称",
+            trigger: "blur",
+          },
+        ],
+        category: [
+          {
+            required: true,
+            message: "请选择课程分类",
+            trigger: "change",
+          },
+        ],
+        lecturer: [
+          {
+            required: true,
+            message: "请选择课程分类",
+            trigger: "change",
+          },
+        ],
+        desc: [
+          {
+            required: true,
+            message: "请输入课程简介",
+            trigger: "blur",
+          },
+        ],
+      },
     };
+  },
+  created() {
+    if (this.$route.query.id) {
+      this.getCourseDetail();
+    }
+  },
+  methods: {
+    // 获取课程详情
+    async getCourseDetail() {
+      const { data: res } = await this.$axios.get(url, { params: { id: id } });
+      if (res.success) {
+        Object.assign(this.form, res.data);
+      }
+    },
+    // 新增/编辑课程内容
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let url = this.form.id ? "/course/update" : "/course/save";
+          this.$axios.post(url, this.form).then((res) => {
+            if (res.data.success) {
+              this.$message.success("保存成功！");
+              this.$router.go(-1);
+            } else {
+              this.$message.error(res.data.msg);
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    // 上传文件
+    uploadFile(file) {
+      this.form.courseUrl.push(file);
+    },
+    // 删除文件
+    removeFile(id) {
+      let fileIds = this.form.courseUrl;
+      var index = fileIds.findIndex((item) => {
+        if (item.id == id) {
+          return true;
+        }
+      });
+      if (index != -1) {
+        fileIds.splice(index, 1);
+      }
+    },
   },
 };
 </script>
@@ -127,4 +200,4 @@ export default {
 .el-select {
   width: 440px;
 }
-</style>
+</style>``

@@ -18,7 +18,8 @@
           </el-col>
           <el-col :span="18">
             <h3>
-              {{ formData.lecturer ? formData.lecturer : "知否君" }}
+              <!-- {{ formData.lecturer ? formData.lecturer : "知否君" }} -->
+              {{$constant.officialAccount}}
               <i
                 style="color: #67c23a; font-size: 25px"
                 class="el-icon-success"

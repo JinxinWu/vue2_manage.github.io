@@ -76,7 +76,9 @@
               @click="deleteUser(scope.row.id)"
               >删除</el-button
             >
-            <el-button size="small" @click="changeView('/user/detail')"
+            <el-button
+              size="small"
+              @click="$commonJs.changeView('/user/detail')"
               >详情</el-button
             >
           </template>
@@ -108,7 +110,7 @@ export default {
         sex: "",
         state: "",
       },
-      total: 1,// 初始化应为 0，这里只做演示效果使用
+      total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
         {
           name: "唐三",
@@ -191,13 +193,12 @@ export default {
         });
     },
     // 路由跳转
-    changeView(url, queryParams) {
-      console.log(url);
-      this.$router.push({
-        path: url,
-        query: queryParams,
-      });
-    },
+    // changeView(url, queryParams) {
+    //   this.$router.push({
+    //     path: url,
+    //     query: queryParams,
+    //   });
+    // },
   },
 };
 </script>

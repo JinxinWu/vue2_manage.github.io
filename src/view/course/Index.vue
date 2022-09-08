@@ -124,7 +124,9 @@
               @click="changeCourseStatus(scope.row.id, 1)"
               >上架</el-button
             >
-            <el-button size="small" @click="openDetail()">详情</el-button>
+            <el-button size="small" @click="openDetail(scope.row.id)"
+              >详情</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -146,7 +148,6 @@
 </template>
 
 <script>
-import { requireFileAsExpression } from "webpack/lib/ParserHelpers";
 import Detail from "../course/Detail.vue";
 export default {
   name: "courseManage",
@@ -178,7 +179,7 @@ export default {
   },
   created() {
     // 初始化表格数据
-    this.getPageList();
+    // this.getPageList();
   },
   methods: {
     async getPageList() {
@@ -275,8 +276,10 @@ export default {
           });
         });
     },
-    openDetail() {
+    openDetail(id) {
       this.$refs.course_detail.drawer = true;
+      this.$refs.course_detail.formData.id = id;
+      this.$refs.course_detail.getCourseDetail();
     },
     // 路由跳转
     changeView(url, queryParams) {

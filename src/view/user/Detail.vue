@@ -20,12 +20,16 @@
             padding-right: 10px;
             color: #999999;
           "
-          >在学课程 2</span
+          >在学课程 {{ userInfo.courseNum ? userInfo.courseNum : "2" }}</span
         >
-        <span style="padding-left: 5px; color: #999999">已下订单 22</span>
+        <span style="padding-left: 5px; color: #999999"
+          >已下订单
+          {{ userInfo.courseOrder ? userInfo.courseOrder : "2" }}</span
+        >
         <p style="margin-top: 10px">
           <el-tag size="small" style="background: #d9f6ee; color: #3dd4a7">
-            <i class="fa fa-circle "></i> 正常</el-tag
+            <i class="fa fa-circle"></i>
+            {{ userInfo.status ? userInfo.status : "正常" }}</el-tag
           >
         </p>
       </div>
@@ -36,27 +40,27 @@
       <el-descriptions class="margin-top" :column="3">
         <el-descriptions-item>
           <template slot="label"> 姓名 </template>
-          唐三
+          {{ userInfo.name ? userInfo.name : "唐三" }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 昵称 </template>
-          斗罗大陆唐三
+          {{ userInfo.nickName ? userInfo.nickName : "斗罗大陆唐三" }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 手机号 </template>
-          19999999999
+          {{ userInfo.mobile ? userInfo.mobile : 15736701918 }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 性别 </template>
-          男
+          {{ userInfo.sex ? userInfo.sex : '男' }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 年龄 </template>
-          22
+          {{ userInfo.age ? userInfo.age : 22 }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 联系地址 </template>
-          知否学堂科学大道
+          {{ userInfo.address ? userInfo.address : '知否科学大道' }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 标签 </template>
@@ -73,11 +77,27 @@
 export default {
   data() {
     return {
-      userInfo: {},
+      userInfo: {
+        id: "",
+      },
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    async getUserDetail() {
+      const result = await this.$axios.get("/user/detail", {
+        params: { id: this.userInfo.id },
+      });
+      if (result.data.success) {
+        Object.assign(this.userInfo, result.data.data);
+      } else {
+        this.$message.error(result.data.message);
+      }
+    },
+    handleClose() {
+      this.drawer = false;
+    },
+  },
 };
 </script>
 

@@ -112,11 +112,16 @@ export default {
   background-size: 100% 100%;
 }
 .login_card {
-  width: 22%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 20%;
   min-width: 300px;
-  margin: 0 auto;
-  height: 60%;
-  margin-top: 10%;
+  height: 500px;
+  min-height: 500px;
   border-radius: 10px;
   text-align: center;
 }
@@ -133,10 +138,8 @@ export default {
   letter-spacing: 2px;
   color: #999a9a;
 }
-.el-input,
 .el-button {
-  width: 275px;
-  min-width: 275px;
+  width: 100%;
 }
 .footer {
   position: absolute;

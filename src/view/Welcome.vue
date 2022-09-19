@@ -34,9 +34,23 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      initData: {},
+    };
+  },
+  created() {
+    this.initData();
   },
   methods: {
+    // 初始化数据
+    async initData() {
+      const result = await this.$axios.get("/manage/init");
+      if (result.data.success) {
+        Object.assign(this.initData, result.data.data);
+      } else {
+        this.$message.error(result.data.message);
+      }
+    },
     myEcharts() {
       var myChart = this.$echarts.init(document.getElementById("one-chart"));
       //配置图表

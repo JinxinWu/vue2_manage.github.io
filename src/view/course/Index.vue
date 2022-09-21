@@ -183,7 +183,7 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get(url, {
+      const result = await this.$axios.get('/course/list', {
         params: this.searchForm,
       });
       if (result.data.success) {

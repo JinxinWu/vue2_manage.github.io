@@ -12,7 +12,6 @@
             v-model="form.category"
             :options="categoryList"
             @change="handleChange"
-            :props="cascaderProps"
           ></el-cascader>
         </el-form-item>
         <el-form-item label="课程售价:">
@@ -54,7 +53,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit('form')">保 存</el-button>
-          <el-button @click="$router.go(-1)">取 消</el-button>
+          <el-button @click="$router.back()">取 消</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -151,7 +150,7 @@ export default {
     };
   },
   created() {
-    // this.getCourseCategory();
+    this.getCourseCategory();
     if (this.$route.query.id) {
       this.getCourseDetail();
     }
@@ -159,7 +158,7 @@ export default {
   methods: {
     // 获取课程详情
     async getCourseDetail() {
-      const { data: res } = await this.$axios.get(url, { params: { id: id } });
+      const { data: res } = await this.$axios.get('/course/detail', { params: { id: id } });
       if (res.success) {
         Object.assign(this.form, res.data);
       }

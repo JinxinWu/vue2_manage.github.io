@@ -12,6 +12,7 @@
             v-model="form.category"
             :options="categoryList"
             @change="handleChange"
+            :props="cascaderProps"
           ></el-cascader>
         </el-form-item>
         <el-form-item label="课程售价:">
@@ -112,6 +113,11 @@ export default {
         { id: 123124, name: "知否君" },
         { id: 123125, name: "工藤新一" },
       ],
+      cascaderProps:{
+        value:'id',
+        label:'name',
+        children:'child'
+      },
       rules: {
         name: [
           {
@@ -145,7 +151,7 @@ export default {
     };
   },
   created() {
-    this.getCourseCategory();
+    // this.getCourseCategory();
     if (this.$route.query.id) {
       this.getCourseDetail();
     }

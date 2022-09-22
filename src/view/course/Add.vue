@@ -145,6 +145,7 @@ export default {
     };
   },
   created() {
+    this.getCourseCategory();
     if (this.$route.query.id) {
       this.getCourseDetail();
     }
@@ -155,6 +156,14 @@ export default {
       const { data: res } = await this.$axios.get(url, { params: { id: id } });
       if (res.success) {
         Object.assign(this.form, res.data);
+      }
+    },
+    async getCourseCategory() {
+      const result = await this.$axios.get("/course/getCategory");
+      if (result.data.success) {
+       this.categoryList = result.data.data;
+      } else {
+        this.$message.error(result.data.message);
       }
     },
     // 新增/编辑课程内容

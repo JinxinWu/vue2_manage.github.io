@@ -36,6 +36,7 @@ export default {
     }
   },
   methods: {
+    // 上传文件
     uploadListRequest(param) {
       const fd = new FormData();
       fd.append("file", param.file);

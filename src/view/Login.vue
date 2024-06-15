@@ -4,7 +4,7 @@
     <el-card class="login_card">
       <el-image class="logo_image" :src="logo_url" fit="cover"></el-image>
       <p class="login_title">登 录</p>
-      <p class="login_desc">欢迎登录知否课堂后台管理系统</p>
+      <p class="login_desc">欢迎登录小会计后台管理系统</p>
       <el-form ref="ruleForm" :model="form" :rules="rules">
         <el-form-item prop="username">
           <el-input
@@ -32,7 +32,7 @@
       </el-form>
     </el-card>
     <!-- 外部logo展示 -->
-    <div>
+    <!-- <div>
       <el-image class="wechat_logo" :src="wechat_img" fit="cover"></el-image>
       <el-image
         class="offical_img"
@@ -41,9 +41,9 @@
       ></el-image>
       <el-image class="home_logo" :src="home_img" fit="cover"></el-image>
       <el-image class="juejin_img" :src="juejin_img" fit="cover"></el-image>
-    </div>
+    </div> -->
     <!-- footer -->
-    <p class="footer">Copyright © ZhiFou All Rights Reserved</p>
+    <p class="footer">Copyright © 小会计 All Rights Reserved</p>
   </div>
 </template>
 <script>

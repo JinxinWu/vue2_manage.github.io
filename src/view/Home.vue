@@ -5,64 +5,34 @@
       <el-header>
         <el-row>
           <el-col :span="4">
-            <p class="system-name">知否课堂后台管理系统</p>
+            <p class="system-name">小会计后台管理系统</p>
           </el-col>
           <el-col :offset="12" :span="8" style="min-width: 150px">
             <el-dropdown style="float: right; margin: 20px 10px">
-              <span
-                class="el-dropdown-link"
-                style="color: #fff; cursor: pointer"
-              >
-                知否君 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
+              <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
+                小会计 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native="editPasswordDialog = true"
-                  >修改密码</el-dropdown-item
-                >
-                <el-dropdown-item @click.native="logout()"
-                  >退出系统</el-dropdown-item
-                >
+                <el-dropdown-item @click.native="editPasswordDialog = true">修改密码</el-dropdown-item>
+                <el-dropdown-item @click.native="logout()">退出系统</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <el-avatar
-              shape="square"
-              :src="avatar"
-              style="margin: 10px; float: right"
-            ></el-avatar>
+            <el-avatar shape="square" :src="avatar" style="margin: 10px; float: right"></el-avatar>
           </el-col>
         </el-row>
         <!-- 修改密码 dialog -->
-        <el-dialog
-          title="修改密码"
-          :visible.sync="editPasswordDialog"
-          width="30%"
-          :before-close="closeEditPassword"
-          :close-on-click-modal="false"
-        >
-          <el-form
-            ref="editPasswordForm"
-            :rules="editPasswordRule"
-            class="demo-form-inline"
-            :model="editPasswordForm"
-            label-width="90px"
-          >
+        <el-dialog title="修改密码" :visible.sync="editPasswordDialog" width="30%" :before-close="closeEditPassword"
+          :close-on-click-modal="false">
+          <el-form ref="editPasswordForm" :rules="editPasswordRule" class="demo-form-inline" :model="editPasswordForm"
+            label-width="90px">
             <el-form-item label="原密码:" prop="oldPassword">
-              <el-input
-                v-model="editPasswordForm.oldPassword"
-                placeholder="请输入原密码"
-              />
+              <el-input v-model="editPasswordForm.oldPassword" placeholder="请输入原密码" />
             </el-form-item>
             <el-form-item label="新密码:" prop="newPassword">
-              <el-input
-                v-model="editPasswordForm.newPassword"
-                placeholder="请输入新密码"
-              />
+              <el-input v-model="editPasswordForm.newPassword" placeholder="请输入新密码" />
             </el-form-item>
             <el-form-item label="确认密码:" prop="confirmPassword">
-              <el-input
-                v-model="editPasswordForm.confirmPassword"
-                placeholder="请确认密码"
-              />
+              <el-input v-model="editPasswordForm.confirmPassword" placeholder="请确认密码" />
             </el-form-item>
             <el-form-item>
               <el-button size="small" @click="closeEditPassword()">取 消</el-button>
@@ -79,12 +49,7 @@
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu
-            router
-            :default-active="activePath"
-            class="el-menu-vertical-demo"
-            :collapse="isCollapse"
-          >
+          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse" :default-openeds="open_list" >
             <el-menu-item index="/index" @click="saveActiveNav('/index')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
@@ -92,31 +57,40 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-setting"></i>
-                <span>系统设置</span>
+                <span>数据导入</span>
               </template>
-              <el-menu-item index="1-4-1">权限管理</el-menu-item>
+              <el-menu-item index="/import/sum">手术信息汇总表</el-menu-item>
+              <el-menu-item index="/">卫生耗材</el-menu-item>
+              <el-submenu index="1-3">
+                <span slot="title">人工费用</span>
+                <el-menu-item index="/import/manual/salary">人员薪资表</el-menu-item>
+                <el-menu-item index="/import/manual/schedule">人员排班表</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="/">间接费用</el-menu-item>
             </el-submenu>
-            <el-menu-item
-              index="/user/list"
-              @click="saveActiveNav('/user/list')"
-            >
+            <el-submenu index="2">
+              <template slot="title">
+                <i class="el-icon-setting"></i>
+                <span>成本计算</span>
+              </template>
+              <el-submenu index="1-1">
+                <span slot="title">人工费用</span>
+                <el-menu-item index="/">麻醉</el-menu-item>
+                <el-menu-item index="/calculate/surgery">手术</el-menu-item>
+                <el-menu-item index="/">复苏</el-menu-item>
+                <el-menu-item index="/">人工费用合计</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="/">材料费用</el-menu-item>
+              <el-menu-item index="/">间接费用</el-menu-item>
+              <el-menu-item index="/">成本汇总</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-tickets"></i>
-              <span slot="title">订单管理</span>
-            </el-menu-item>
-            <el-menu-item
-              index="/course/list"
-              @click="saveActiveNav('/course/list')"
-            >
+            <el-menu-item index="/course/list" @click="saveActiveNav('/course/list')">
               <i class="el-icon-notebook-1"></i>
-              <span slot="title"> 课程管理</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-reading"></i>
-              <span slot="title">文章管理</span>
+              <span slot="title">课程管理</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
@@ -127,7 +101,7 @@
             <!-- 主要内容 -->
             <router-view></router-view>
           </el-main>
-          <el-footer>Copyright © 2022 知否技术</el-footer>
+          <el-footer>Copyright © 2024 小会计技术</el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -140,6 +114,8 @@ export default {
   components: { Breadcrumb },
   data() {
     return {
+      // 默认打开菜单
+      open_list: ['1'],
       avatar: require("@/assets/img/avator.jpg"),
       isCollapse: false,
       // 被激活的链接地址,默认是首页
@@ -221,7 +197,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .home-container {
   position: absolute;
   height: 100%;

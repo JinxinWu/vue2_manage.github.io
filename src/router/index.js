@@ -4,7 +4,8 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history', // 去掉路径中的 # 号
-  routes: [{
+  routes: [
+    {
       path: '/',
       redirect: '/login'
     },
@@ -16,7 +17,6 @@ const router = new Router({
       },
       component: () => import('@/view/Login.vue')
     },
-
     {
       path: '/home',
       meta: {
@@ -25,54 +25,82 @@ const router = new Router({
       component: () => import('@/view/Home.vue'),
       redirect: '/index',
       children: [{
-          path: '/index',
-          meta: {
-            title: '首页'
-          },
-          component: () => import('@/view/Welcome.vue')
+        path: '/index',
+        meta: {
+          title: '首页'
         },
-        {
-          path: '/user/list',
-          meta: {
-            title: '用户管理'
-          },
-          component: () => import('@/view/user/Index.vue'),
+        component: () => import('@/view/Welcome.vue')
+      },
+      {
+        path: '/import/sum',
+        meta: {
+          title: '手术信息汇总表',
         },
-        {
-          path: '/user/detail',
-          meta: {
-            title: '用户详情'
-          },
-          component: () => import('@/view/user/Detail.vue'),
+        component: () => import('@/view/import/sum/index.vue'),
+      },
+      {
+        path: '/import/manual/salary',
+        meta: {
+          title: '人员薪资表'
         },
-        {
-          path: '/course/list',
-          meta: {
-            title: '课程管理'
-          },
-          component: () => import('@/view/course/Index.vue'),
+        component: () => import('@/view/import/manual/salary/index.vue'),
+      },
+      {
+        path: '/import/manual/schedule',
+        meta: {
+          title: '人员排班表'
         },
-        {
-          path: '/course/add',
-          meta: {
-            title: '新增课程'
-          },
-          component: () => import('@/view/course/Add.vue'),
+        component: () => import('@/view/import/manual/schedule/index.vue'),
+      },
+      {
+        path: '/calculate/surgery',
+        meta: {
+          title: '手术'
         },
-        {
-          path: '/course/update',
-          meta: {
-            title: '编辑课程'
-          },
-          component: () => import('@/view/course/Add.vue'),
+        component: () => import('@/view/calculate/surgery/index.vue'),
+      },
+      {
+        path: '/user/list',
+        meta: {
+          title: '用户管理'
         },
-        {
-          path: '/course/detail',
-          meta: {
-            title: '课程详情'
-          },
-          component: () => import('@/view/course/Detail.vue'),
+        component: () => import('@/view/user/Index.vue'),
+      },
+      {
+        path: '/user/detail',
+        meta: {
+          title: '用户详情'
         },
+        component: () => import('@/view/user/Detail.vue'),
+      },
+      {
+        path: '/course/list',
+        meta: {
+          title: '课程管理'
+        },
+        component: () => import('@/view/course/Index.vue'),
+      },
+      {
+        path: '/course/add',
+        meta: {
+          title: '新增课程'
+        },
+        component: () => import('@/view/course/Add.vue'),
+      },
+      {
+        path: '/course/update',
+        meta: {
+          title: '编辑课程'
+        },
+        component: () => import('@/view/course/Add.vue'),
+      },
+      {
+        path: '/course/detail',
+        meta: {
+          title: '课程详情'
+        },
+        component: () => import('@/view/course/Detail.vue'),
+      },
       ]
     },
   ]
@@ -81,7 +109,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // 修改页面 title
   if (to.meta.title) {
-    document.title = '知否课堂后台管理系统 - ' + to.meta.title
+    document.title = '小会计 - ' + to.meta.title
   }
   // 放行登录页面
   if (to.path === '/login') {

@@ -84,14 +84,14 @@
               <el-menu-item index="/">间接费用</el-menu-item>
               <el-menu-item index="/">成本汇总</el-menu-item>
             </el-submenu>
-            <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
+            <!-- <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
               <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
             <el-menu-item index="/course/list" @click="saveActiveNav('/course/list')">
               <i class="el-icon-notebook-1"></i>
               <span slot="title">课程管理</span>
-            </el-menu-item>
+            </el-menu-item> -->
           </el-menu>
         </el-aside>
         <el-container>

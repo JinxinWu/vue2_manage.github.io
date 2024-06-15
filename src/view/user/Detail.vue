@@ -13,7 +13,7 @@
           :size="150"
           :src="require('../../assets/img/avator.jpg')"
         ></el-avatar>
-        <h2 style="margin: 10px 0px">{{ userInfo.name ? "" : "唐三" }}</h2>
+        <h2 style="margin: 10px 0px">{{ userInfo.name ? "" : "wu" }}</h2>
         <span
           style="
             border-right: 2px solid #d2d2d2;
@@ -40,11 +40,11 @@
       <el-descriptions class="margin-top" :column="3">
         <el-descriptions-item>
           <template slot="label"> 姓名 </template>
-          {{ userInfo.name ? userInfo.name : "唐三" }}
+          {{ userInfo.name ? userInfo.name : "wu" }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 昵称 </template>
-          {{ userInfo.nickName ? userInfo.nickName : "斗罗大陆唐三" }}
+          {{ userInfo.nickName ? userInfo.nickName : "Star" }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label"> 手机号 </template>

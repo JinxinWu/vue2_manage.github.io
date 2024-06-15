@@ -23,9 +23,9 @@ export default {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
         {
-          name: "唐三",
+          name: "wu",
           sex: 1,
-          nickname: "斗罗大陆唐三",
+          nickname: "Star",
           mobile: "19999999999",
           state: 0,
           stateName: "正常",

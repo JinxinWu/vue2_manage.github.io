@@ -1,16 +1,6 @@
 <template>
   <div class="content">
-    <el-tabs type="border-card">
-      <el-tab-pane label="骨科医生排班表">
-        <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
-      </el-tab-pane>
-      <el-tab-pane label="麻醉科排班表">
-        <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
-      </el-tab-pane>
-      <el-tab-pane label="手术室排班表">
-        <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
-      </el-tab-pane>
-    </el-tabs>
+    <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
   </div>
 </template>
 
@@ -32,11 +22,11 @@ export default {
         },
       ],
       tableColumns: [
-        { key: 'name', name: '姓名' },
-        { key: 'sex', name: '性别' },
-        { key: 'nickname', name: '昵称' },
-        { key: 'mobile', name: '手机号' },
-        { key: 'stateName', name: '状态' },
+        { key: 'name', name: '姓名', minWidth: 120 },
+        { key: 'sex', name: '性别', minWidth: 120 },
+        { key: 'nickname', name: '昵称', minWidth: 150 },
+        { key: 'mobile', name: '手机号', minWidth: 150 },
+        { key: 'stateName', name: '状态', width: 250 },
       ]
     };
   },

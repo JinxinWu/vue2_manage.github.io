@@ -60,13 +60,13 @@
                 <span>数据导入</span>
               </template>
               <el-menu-item index="/import/sum">手术信息汇总表</el-menu-item>
-              <el-menu-item index="/">卫生耗材</el-menu-item>
+              <el-menu-item index="/import/consum">卫生耗材</el-menu-item>
               <el-submenu index="1-3">
                 <span slot="title">人工费用</span>
                 <el-menu-item index="/import/manual/salary">人员薪资表</el-menu-item>
                 <el-menu-item index="/import/manual/schedule">人员排班表</el-menu-item>
               </el-submenu>
-              <el-menu-item index="/">间接费用</el-menu-item>
+              <el-menu-item index="/import/indirect">间接费用</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
@@ -75,14 +75,14 @@
               </template>
               <el-submenu index="1-1">
                 <span slot="title">人工费用</span>
-                <el-menu-item index="/">麻醉</el-menu-item>
-                <el-menu-item index="/calculate/surgery">手术</el-menu-item>
-                <el-menu-item index="/">复苏</el-menu-item>
-                <el-menu-item index="/">人工费用合计</el-menu-item>
+                <el-menu-item index="/calculate/manual/mazui">麻醉</el-menu-item>
+                <el-menu-item index="/calculate/manual/surgery">手术</el-menu-item>
+                <el-menu-item index="/calculate/manual/recovery">复苏</el-menu-item>
+                <el-menu-item index="/calculate/manual/manSum">人工费用合计</el-menu-item>
               </el-submenu>
-              <el-menu-item index="/">材料费用</el-menu-item>
-              <el-menu-item index="/">间接费用</el-menu-item>
-              <el-menu-item index="/">成本汇总</el-menu-item>
+              <el-menu-item index="/calculate/material">材料费用</el-menu-item>
+              <el-menu-item index="/calculate/indirect">间接费用</el-menu-item>
+              <el-menu-item index="/calculate/sum">成本汇总</el-menu-item>
             </el-submenu>
             <!-- <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">
               <i class="el-icon-user"></i>

@@ -39,6 +39,20 @@ const router = new Router({
         component: () => import('@/view/import/sum/index.vue'),
       },
       {
+        path: '/import/consum',
+        meta: {
+          title: '卫生耗材',
+        },
+        component: () => import('@/view/import/consum/index.vue'),
+      },
+      {
+        path: '/import/indirect',
+        meta: {
+          title: '间接费用',
+        },
+        component: () => import('@/view/import/indirect/index.vue'),
+      },
+      {
         path: '/import/manual/salary',
         meta: {
           title: '人员薪资表'
@@ -53,11 +67,53 @@ const router = new Router({
         component: () => import('@/view/import/manual/schedule/index.vue'),
       },
       {
-        path: '/calculate/surgery',
+        path: '/calculate/manual/surgery',
         meta: {
           title: '手术'
         },
-        component: () => import('@/view/calculate/surgery/index.vue'),
+        component: () => import('@/view/calculate/manual/surgery/index.vue'),
+      },
+      {
+        path: '/calculate/manual/mazui',
+        meta: {
+          title: '麻醉'
+        },
+        component: () => import('@/view/calculate/manual/mazui/index.vue'),
+      },
+      {
+        path: '/calculate/manual/recovery',
+        meta: {
+          title: '复苏'
+        },
+        component: () => import('@/view/calculate/manual/recovery/index.vue'),
+      },
+      {
+        path: '/calculate/manual/manSum',
+        meta: {
+          title: '人工费用合计'
+        },
+        component: () => import('@/view/calculate/manual/manSum/index.vue'),
+      },
+      {
+        path: '/calculate/material',
+        meta: {
+          title: '材料费用'
+        },
+        component: () => import('@/view/calculate/material/index.vue'),
+      },
+      {
+        path: '/calculate/indirect',
+        meta: {
+          title: '间接费用'
+        },
+        component: () => import('@/view/calculate/indirect/index.vue'),
+      },
+      {
+        path: '/calculate/sum',
+        meta: {
+          title: '成本汇总'
+        },
+        component: () => import('@/view/calculate/sum/index.vue'),
       },
       {
         path: '/user/list',

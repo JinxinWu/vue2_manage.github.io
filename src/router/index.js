@@ -39,18 +39,18 @@ const router = new Router({
         component: () => import('@/view/import/sum/index.vue'),
       },
       {
-        path: '/import/consum',
+        path: '/import/consum/bag',
         meta: {
-          title: '卫生耗材',
+          title: '手术包',
         },
-        component: () => import('@/view/import/consum/index.vue'),
+        component: () => import('@/view/import/consum/bag/index.vue'),
       },
       {
-        path: '/import/indirect',
+        path: '/import/consum/noch',
         meta: {
-          title: '间接费用',
+          title: '不收费耗材',
         },
-        component: () => import('@/view/import/indirect/index.vue'),
+        component: () => import('@/view/import/consum/noch/index.vue'),
       },
       {
         path: '/import/manual/salary',
@@ -65,6 +65,34 @@ const router = new Router({
           title: '人员排班表'
         },
         component: () => import('@/view/import/manual/schedule/index.vue'),
+      },
+      {
+        path: '/import/indirect/zhejiu',
+        meta: {
+          title: '设备折旧明细表'
+        },
+        component: () => import('@/view/import/indirect/zhejiu/index.vue'),
+      },
+      {
+        path: '/import/indirect/device',
+        meta: {
+          title: '手术间设备数量表'
+        },
+        component: () => import('@/view/import/indirect/device/index.vue'),
+      },
+      {
+        path: '/import/indirect/house',
+        meta: {
+          title: '房屋折旧表'
+        },
+        component: () => import('@/view/import/indirect/house/index.vue'),
+      },
+      {
+        path: '/import/indirect/ele',
+        meta: {
+          title: '水电费表'
+        },
+        component: () => import('@/view/import/indirect/ele/index.vue'),
       },
       {
         path: '/calculate/manual/surgery',
@@ -86,13 +114,6 @@ const router = new Router({
           title: '复苏'
         },
         component: () => import('@/view/calculate/manual/recovery/index.vue'),
-      },
-      {
-        path: '/calculate/manual/manSum',
-        meta: {
-          title: '人工费用合计'
-        },
-        component: () => import('@/view/calculate/manual/manSum/index.vue'),
       },
       {
         path: '/calculate/material',

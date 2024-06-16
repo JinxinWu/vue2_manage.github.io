@@ -12,21 +12,94 @@ export default {
     return {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
-        {
-          name: "wu",
-          sex: 1,
-          nickname: "Star",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
-        },
       ],
       tableColumns: [
-        { key: 'name', name: '姓名', minWidth: 120 },
-        { key: 'sex', name: '性别', minWidth: 120 },
-        { key: 'nickname', name: '昵称', minWidth: 150 },
-        { key: 'mobile', name: '手机号', minWidth: 150 },
-        { key: 'stateName', name: '状态', width: 250 },
+          { key: "time", name: "床位" },
+          { key: "surgicalLeveal", name: "surgicalLeveal" },
+          { key: "surgicalType", name: "surgicalType" },
+          { key: "room", name: "room" },
+          { key: "unitsNum", name: "unitsNum" },
+          { key: "surgicalState", name: "surgicalState" },
+          { key: "noticeTime", name: "noticeTime" },
+          { key: "deliveryTime", name: "deliveryTime" },
+          { key: "arriveTime", name: "arriveTime" },
+          { key: "enterTime", name: "enterTime" },
+          {
+            key: "firstCheck",
+            name: "firstCheck"
+          },
+          {
+            key: "mianKnifeCheck",
+            name: "mianKnifeCheck"
+          },
+          {
+            key: "anesthesiaTime",
+            name: "anesthesiaTime"
+          },
+          {
+            key: "surgeryStartTime",
+            name: "surgeryStartTime"
+          },
+          {
+            key: "surgeryEndTime",
+            name: "surgeryEndTime"
+          },
+          {
+            key: "leaveRoomTime",
+            name: "leaveRoomTime"
+          },
+          {
+            key: "leaveHouseTime",
+            name: "leaveHouseTime"
+          },
+          {
+            key: "anesthesiaMethod",
+            name: "anesthesiaMethod"
+          },
+          {
+            key: "anesthesiaDoctor",
+            name: "anesthesiaDoctor"
+          },
+          {
+            key: "ssys",
+            name: "ssys"
+          },
+          {
+            key: "zyh",
+            name: "zyh"
+          },
+          {
+            key: "ssmc",
+            name: "ssmc"
+          },
+          {
+            key: "cw",
+            name: "cw"
+          },
+          {
+            key: "xb",
+            name: "xb"
+          },
+          {
+            key: "nl",
+            name: "nl"
+          },
+          {
+            key: "xm",
+            name: "xm"
+          },
+          {
+            key: "sqks",
+            name: "sqks"
+          },
+          {
+            key: "ssks",
+            name: "ssks"
+          },
+          {
+            key: "yllz",
+            name: "yllz"
+          }
       ]
     };
   },
@@ -35,14 +108,20 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get(url, {
-        params: this.searchForm,
-      });
-      if (result.data.success) {
-        this.tableData = result.data.data.records;
-        this.total = result.data.data.total;
+      const result = await this.$axios.get("http://8.130.90.74:50051/table/getSSXXHZ");
+      if (result.data) {
+        this.tableData = result.data;
+        this.total = result.data.length;
+        // result.data[0]中获得到tableColumns
+        this.tableColumns = Object.keys(result.data[0]).map((item) => {
+          return {
+            key: item,
+            name: item,
+          };
+        });
+        console.log(this.tableColumns);
       } else {
-        this.$message.error(result.data.message);
+        this.$message.error("手术信息汇总表获取失败");
       }
     },
     // 路由跳转

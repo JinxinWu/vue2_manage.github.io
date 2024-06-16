@@ -11,6 +11,9 @@ import 'font-awesome/css/font-awesome.min.css'
 import * as echarts from 'echarts'
 // 引入 axios
 import axios from 'axios'
+// 引入 v-fit-columns
+import Plugin from 'v-fit-columns';
+
 // 将 axios 挂载到 Vue 上
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
@@ -18,6 +21,7 @@ import commonJs from '@/assets/js/common.js'
 import constant from '@/assets/js/constant.js'
 // 使用 ElementUI
 Vue.use(ElementUI);
+Vue.use(Plugin);
 // 将 echarts 挂载到 Vue 上
 Vue.prototype.$echarts = echarts
 Vue.prototype.$commonJs = commonJs

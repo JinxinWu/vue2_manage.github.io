@@ -60,13 +60,23 @@
                 <span>数据导入</span>
               </template>
               <el-menu-item index="/import/sum">手术信息汇总表</el-menu-item>
-              <el-menu-item index="/import/consum">卫生耗材</el-menu-item>
+              <el-submenu index="1-2">
+                <span slot="title">卫生耗材</span>
+                <el-menu-item index="/import/consum/bag">手术包</el-menu-item>
+                <el-menu-item index="/import/consum/noch">不收费耗材</el-menu-item>
+              </el-submenu>
               <el-submenu index="1-3">
                 <span slot="title">人工费用</span>
                 <el-menu-item index="/import/manual/salary">人员薪资表</el-menu-item>
                 <el-menu-item index="/import/manual/schedule">人员排班表</el-menu-item>
               </el-submenu>
-              <el-menu-item index="/import/indirect">间接费用</el-menu-item>
+              <el-submenu index="1-4">
+                <span slot="title">间接费用</span>
+                <el-menu-item index="/import/indirect/zhejiu">设备折旧明细表</el-menu-item>
+                <el-menu-item index="/import/indirect/device">手术间设备数量表</el-menu-item>
+                <el-menu-item index="/import/indirect/house">房屋折旧表</el-menu-item>
+                <el-menu-item index="/import/indirect/ele">水电费表</el-menu-item>
+              </el-submenu>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
@@ -78,7 +88,6 @@
                 <el-menu-item index="/calculate/manual/mazui">麻醉</el-menu-item>
                 <el-menu-item index="/calculate/manual/surgery">手术</el-menu-item>
                 <el-menu-item index="/calculate/manual/recovery">复苏</el-menu-item>
-                <el-menu-item index="/calculate/manual/manSum">人工费用合计</el-menu-item>
               </el-submenu>
               <el-menu-item index="/calculate/material">材料费用</el-menu-item>
               <el-menu-item index="/calculate/indirect">间接费用</el-menu-item>
@@ -101,7 +110,7 @@
             <!-- 主要内容 -->
             <router-view></router-view>
           </el-main>
-          <el-footer>Copyright © 2024 小会计技术</el-footer>
+          <!-- <el-footer>Copyright © 2024 小会计技术</el-footer> -->
         </el-container>
       </el-container>
     </el-container>

@@ -123,11 +123,18 @@ const router = new Router({
         component: () => import('@/view/calculate/material/index.vue'),
       },
       {
-        path: '/calculate/indirect',
+        path: '/calculate/indirect/standard',
         meta: {
-          title: '间接费用'
+          title: '各手术间单位时间标准成本'
         },
-        component: () => import('@/view/calculate/indirect/index.vue'),
+        component: () => import('@/view/calculate/indirect/standard/index.vue'),
+      },
+      {
+        path: '/calculate/indirect/cal',
+        meta: {
+          title: '间接费用计算'
+        },
+        component: () => import('@/view/calculate/indirect/cal/index.vue'),
       },
       {
         path: '/calculate/sum',

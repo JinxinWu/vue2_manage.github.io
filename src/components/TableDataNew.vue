@@ -2,15 +2,8 @@
   <div>
     <el-card shadow="never">
       <!-- Upload -->
-      <el-button @click="dialogUploadVisible = true">导入excel表格</el-button>
+      <el-button @click="handleSizeChange(searchForm.size)">计算数据</el-button>
 
-      <el-dialog title="文件上传" :visible.sync="dialogUploadVisible">
-        <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
-        </el-upload>
-      </el-dialog>
       <!-- 表格 -->
       <el-table ref="table" :data="tableDataShow" border>
         <el-table-column fixed type="index" label="序号" width="50" />

@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: "courseManage",
+  name: "device",
   components: {},
   data() {
     return {

@@ -42,8 +42,8 @@ export default new Vuex.Store({
       state.bagForm = payload
     },
     // 更新deviceData
-    updateBagForm(state, payload) {
-      state.deviceData = deviceData
+    updateDeviceData(state, payload) {
+      state.deviceData = payload
     },
   },
   // 操作异步操作mutation

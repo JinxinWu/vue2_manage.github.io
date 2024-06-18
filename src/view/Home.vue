@@ -4,10 +4,13 @@
       <!-- header -->
       <el-header>
         <el-row>
-          <el-col :span="4">
-            <p class="system-name">小会计后台管理系统</p>
+          <el-col :span="1">
+            <el-image style="width: 45px; height: 45px; margin-top: 8px; margin-left: 10px;" :src="logo_url"></el-image>
           </el-col>
-          <el-col :offset="12" :span="8" style="min-width: 150px">
+          <el-col :span="4">
+            <p class="system-name">小会计系统</p>
+          </el-col>
+          <el-col :offset="10" :span="8" style="min-width: 150px">
             <el-dropdown style="float: right; margin: 20px 10px">
               <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
                 小会计 &nbsp;&nbsp;<i class="fa fa-caret-down fa-1x"></i>
@@ -49,7 +52,8 @@
             <i v-if="isCollapse" class="el-icon-s-unfold"></i>
             <i v-if="!isCollapse" class="el-icon-s-fold"></i>
           </div>
-          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse" :default-openeds="open_list" >
+          <el-menu router :default-active="activePath" class="el-menu-vertical-demo" :collapse="isCollapse"
+            :default-openeds="open_list">
             <el-menu-item index="/index" @click="saveActiveNav('/index')">
               <i class="el-icon-house"></i>
               <span slot="title">首页</span>
@@ -127,6 +131,7 @@ export default {
   components: { Breadcrumb },
   data() {
     return {
+      logo_url: require("@/assets/img/logo.png"),
       // 默认打开菜单
       open_list: ['1'],
       avatar: require("@/assets/img/avator.jpg"),
@@ -221,7 +226,7 @@ export default {
 }
 
 .el-header {
-  background: #2661ef;
+  background: #409EFF;
   padding: 0 10px;
   overflow: hidden;
 }

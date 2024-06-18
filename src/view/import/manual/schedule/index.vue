@@ -2,13 +2,13 @@
   <div class="content">
     <el-tabs type="border-card">
       <el-tab-pane label="骨科医生排班表">
-        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK"></TableData>
+        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK" :urlAdd="GKYSPB"></TableData>
       </el-tab-pane>
       <el-tab-pane label="麻醉科排班表">
-        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ"></TableData>
+        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ" :urlAdd="MZKPB"></TableData>
       </el-tab-pane>
       <el-tab-pane label="手术室排班表">
-        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS"></TableData>
+        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS" :urlAdd="SSSPB"></TableData>
       </el-tab-pane>
     </el-tabs>
   </div>

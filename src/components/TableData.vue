@@ -78,7 +78,7 @@ export default {
       dialogUploadVisible: false,
     };
   },
-  props: ["mydata", "mytotal", "myshuxing"],
+  props: ["mydata", "mytotal", "myshuxing", "urlAdd"],
   watch: {
     mydata: function (newVal, oldVal) {
       this.tableData = newVal;
@@ -163,7 +163,7 @@ export default {
           },
           data: {
             file: this.fileList[0],
-            url: "a",
+            url: (this.urlAdd) ? this.$route.path + this.urlAdd : this.$route.path,
           },
         }).then(
           (res) => {},

@@ -2,11 +2,11 @@
   <div class="content">
     <el-card shadow="never">
       <el-row>
-        <el-col :offset="10" :span="4" style="margin-bottom: 20px;">
+        <!-- <el-col :offset="10" :span="4" style="margin-bottom: 20px;">
           <div style="font-size: 30px;">
             <span>房屋折旧</span>
           </div>
-        </el-col>
+        </el-col> -->
         <el-col :offset="6" :span="10">
           <el-form ref="form" :model="form" label-width="180px">
             <el-form-item label="本月折旧总计">

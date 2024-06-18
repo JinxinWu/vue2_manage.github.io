@@ -3,9 +3,9 @@
     <el-card shadow="never">
       <el-row>
         <el-col :offset="6" :span="10">
-          <div style="margin-left: 126px; margin-bottom: 20px;">
+          <!-- <div style="margin-left: 126px; margin-bottom: 20px;">
             <span>1月份</span>
-          </div>
+          </div> -->
           <el-form ref="form" :model="form" label-width="180px">
             <el-form-item label="本月水费总计">
               <el-input v-model="form.water" placeholder="请输入数值"></el-input>

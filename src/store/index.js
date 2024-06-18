@@ -19,6 +19,10 @@ export default new Vuex.Store({
       area: null,
       sum: null,
     },
+    bagForm: {
+      cost: null,
+    },
+    deviceData: [],
   },
   getters: {
 
@@ -32,6 +36,14 @@ export default new Vuex.Store({
     // 更新eleForm
     updateEleForm(state, payload) {
       state.eleForm = payload
+    },
+    // 更新bagForm
+    updateBagForm(state, payload) {
+      state.bagForm = payload
+    },
+    // 更新deviceData
+    updateBagForm(state, payload) {
+      state.deviceData = deviceData
     },
   },
   // 操作异步操作mutation

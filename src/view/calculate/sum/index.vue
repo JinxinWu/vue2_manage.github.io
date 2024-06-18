@@ -22,11 +22,11 @@ export default {
         },
       ],
       tableColumns: [
-        { key: 'name', name: '姓名', minWidth: 120 },
-        { key: 'sex', name: '性别', minWidth: 120 },
-        { key: 'nickname', name: '昵称', minWidth: 150 },
-        { key: 'mobile', name: '手机号', minWidth: 150 },
-        { key: 'stateName', name: '状态', width: 250 },
+        { key: 'name', name: '姓名' },
+        { key: 'sex', name: '性别' },
+        { key: 'nickname', name: '昵称' },
+        { key: 'mobile', name: '手机号' },
+        { key: 'stateName', name: '状态' },
       ]
     };
   },

@@ -39,14 +39,24 @@ export default {
   components: {},
   data() {
     return {
-      form: {
-        water: null,
-        elec: null,
-        areaSum: null,
-        area: null,
-        sum: null,
-      },
+      // form: {
+      //   water: null,
+      //   elec: null,
+      //   areaSum: null,
+      //   area: null,
+      //   sum: null,
+      // },
     };
+  },
+  computed: {
+    form: {
+      get() {
+        return this.$store.state.eleForm;
+      },
+      set(value) {
+        this.$store.commit('updateEleForm', value);
+      }
+    }
   },
   created() {
   },

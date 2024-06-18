@@ -33,18 +33,29 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'   // 引入mapState
 export default {
   name: "ele",
   components: {},
   data() {
     return {
-      form: {
-        zhejiu: null,
-        area: null,
-        areaSum: null,
-        res: null,
-      },
+      // form: {
+        // zhejiu: null,
+        // area: null,
+        // areaSum: null,
+        // res: null,
+      // },
     };
+  },
+  computed: {
+    form: {
+      get() {
+        return this.$store.state.houseForm;
+      },
+      set(value) {
+        this.$store.commit('updateHouseForm', value);
+      }
+    }
   },
   created() {
   },

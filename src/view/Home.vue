@@ -56,7 +56,7 @@
             </el-menu-item>
             <el-submenu index="1">
               <template slot="title">
-                <i class="el-icon-setting"></i>
+                <i class="el-icon-upload"></i>
                 <span>数据导入</span>
               </template>
               <el-menu-item index="/import/sum">手术信息汇总表</el-menu-item>
@@ -80,17 +80,21 @@
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
-                <i class="el-icon-setting"></i>
+                <i class="el-icon-s-platform"></i>
                 <span>成本计算</span>
               </template>
-              <el-submenu index="1-1">
+              <el-submenu index="2-1">
                 <span slot="title">人工费用</span>
                 <el-menu-item index="/calculate/manual/mazui">麻醉</el-menu-item>
                 <el-menu-item index="/calculate/manual/surgery">手术</el-menu-item>
                 <el-menu-item index="/calculate/manual/recovery">复苏</el-menu-item>
               </el-submenu>
               <el-menu-item index="/calculate/material">材料费用</el-menu-item>
-              <el-menu-item index="/calculate/indirect">间接费用</el-menu-item>
+              <el-submenu index="2-2">
+                <span slot="title">间接费用</span>
+                <el-menu-item index="/calculate/indirect/standard">各手术间单位时间标准成本</el-menu-item>
+                <el-menu-item index="/calculate/indirect/cal">间接费用计算</el-menu-item>
+              </el-submenu>
               <el-menu-item index="/calculate/sum">成本汇总</el-menu-item>
             </el-submenu>
             <!-- <el-menu-item index="/user/list" @click="saveActiveNav('/user/list')">

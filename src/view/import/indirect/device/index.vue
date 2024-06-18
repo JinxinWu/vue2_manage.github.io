@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: "courseManage",
+  name: "device",
   components: {},
   data() {
     return {
@@ -62,19 +62,29 @@ export default {
         // state: "",
       },
       total: 1, // 初始化应为 0，这里只做演示效果使用
-      tableData: [
-        // {
-        //   id: 123123,
-        //   room: "抽丝剥茧Vue源码",
-        //   device: "ZF00100",
-        //   amount: "知否君",
-        // },
-      ],
+      // tableData: [
+      // {
+      //   id: 123123,
+      //   room: "抽丝剥茧Vue源码",
+      //   device: "ZF00100",
+      //   amount: "知否君",
+      // },
+      // ],
     };
   },
   created() {
     // 初始化表格数据
     // this.getPageList();
+  },
+  computed: {
+    tableData: {
+      get() {
+        return this.$store.state.deviceData;
+      },
+      set(value) {
+        this.$store.commit('updateDeviceData', value);
+      }
+    }
   },
   methods: {
     async getPageList() {
@@ -130,11 +140,26 @@ export default {
     // 新增数据
     onAdd() {
       this.tableData.push({
-        id: 123123,
+        id: id++,
         room: this.formInline.room,
         device: this.formInline.device,
         amount: this.formInline.amount,
       });
+    },
+    // 提交数据 tableData
+    onSubmit() {
+      this.$axios
+        .post("http://localhost:50051/money/SSJSB", this.tableData)
+        .then((res) => {
+          if (res.data.success) {
+            this.$message({ message: "上传成功！", type: "success" });
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((err) => {
+          this.$message.error()
+        })
     },
     // 路由跳转
     changeView(url, queryParams) {

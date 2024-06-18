@@ -1,13 +1,13 @@
 <template>
   <div class="content">
-    <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
+    <TableDataNew :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableDataNew>
   </div>
 </template>
 
 <script>
-import TableData from '@/components/TableData.vue';
+import TableDataNew from '@/components/TableDataNew.vue';
 export default {
-  components: { TableData, },
+  components: { TableDataNew, },
   data() {
     return {
       total: 1, // 初始化应为 0，这里只做演示效果使用

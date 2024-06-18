@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import './assets/css/global.css'
 // 导入 ElementUI
 import ElementUI from 'element-ui';
@@ -40,6 +41,7 @@ axios.interceptors.request.use(function (config) {
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

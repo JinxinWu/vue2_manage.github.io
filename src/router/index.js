@@ -3,7 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history', // 去掉路径中的 # 号
+  mode: 'hash', // 去掉路径中的 # 号
   routes: [
     {
       path: '/',

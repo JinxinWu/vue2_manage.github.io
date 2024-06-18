@@ -91,7 +91,11 @@ export default {
           //     this.$message.error("服务器连接失败，请稍后重试......");
           //     this.loginLoading = false;
           //   });
-          this.$router.push("/home");
+          if(this.form.username == "admin" && this.form.password == "123456") {
+            this.$router.push("/home");
+          } else {
+            this.$message.error("账号或密码错误，请重新输入");
+          }
         } else {
           return false;
         }

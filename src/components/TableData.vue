@@ -153,15 +153,19 @@ export default {
       if (this.fileList.length === 0) {
         this.$message.warning("请上传文件");
       } else {
-        let form = new FormData();
-        form.append("file", this.fileList);
+        // let form = new FormData();
+        // form.append("file", this.fileList[0]);
+        console.log(this.fileList[0]);
         this.$axios({
           method: "post",
           url: "http://localhost:50051/file/downTaxes",
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-          data: form,
+          data: {
+            file: this.fileList[0],
+            url: "SSSPB",
+          },
         }).then(
           (res) => {},
           (err) => {

@@ -30,7 +30,7 @@
         <el-table-column prop="amount" label="数量" show-overflow-tooltip />
         <el-table-column label="操作" width="360">
           <template slot-scope="scope">
-            <el-button type="danger" size="small" @click="deletecourse(scope.row.id)">删除</el-button>
+            <el-button type="danger" size="small" @click="deletecourse(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -110,7 +110,7 @@ export default {
       this.getPageList();
     },
     // 删除
-    deletecourse(id) {
+    deletecourse(it) {
       this.$confirm("确认要删除该课程吗, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -118,19 +118,23 @@ export default {
       })
         .then(() => {
           // 删除逻辑
-          this.$axios
-            .delete(url, {
-              params: { id: id },
-            })
-            .then((res) => {
-              if (res.data.success) {
-                this.$message({ message: "删除成功！", type: "success" });
-              } else {
-                this.$message.error(res.data.message);
-              }
-            });
+          // this.$axios
+          //   .delete(url, {
+          //     params: { id: id },
+          //   })
+          //   .then((res) => {
+          //     if (res.data.success) {
+          //       this.$message({ message: "删除成功！", type: "success" });
+          //     } else {
+          //       this.$message.error(res.data.message);
+          //     }
+          //   });
+          this.tableData = this.tableData.filter((item) => item.room !== it.room);
+          // console.log(it.room);
+          this.$message({ message: "删除成功！", type: "success" });
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           this.$message({
             type: "info",
             message: "已取消删除",

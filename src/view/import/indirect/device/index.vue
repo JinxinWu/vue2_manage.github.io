@@ -140,7 +140,7 @@ export default {
     // 新增数据
     onAdd() {
       this.tableData.push({
-        id: id++,
+        id: 123,
         room: this.formInline.room,
         device: this.formInline.device,
         amount: this.formInline.amount,

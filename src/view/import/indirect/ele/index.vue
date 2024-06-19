@@ -64,6 +64,28 @@ export default {
     onSubmit() {
       // 转换成数字计算
       this.form.sum = (Number(this.form.water) + Number(this.form.elec)) * Number(this.form.area) / Number(this.form.areaSum);
+      this.$axios({
+        method: "post",
+        url: "http://localhost:50051/money/SDF",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        dataType: "json",
+        data: JSON.stringify({
+          BYSFZJ: this.form.water,
+          BYDFZJ: this.form.elec,
+          ZMJ: this.form.areaSum,
+          SSJMJ: this.form.area,
+          BYSSJSDFZJ: this.form.sum,
+        }),
+      }).then(
+        (res) => {
+          console.log(res.data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     }
   },
 };

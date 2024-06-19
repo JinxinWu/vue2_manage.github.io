@@ -35,14 +35,21 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get(url, {
-        params: this.searchForm,
-      });
-      if (result.data.success) {
-        this.tableData = result.data.data.records;
-        this.total = result.data.data.total;
+      const result = await this.$axios.get("http://localhost:50051/table/getGSSJDWSJBZCB");
+      // console.log(result.data[0]);
+      if (result.data) {
+        this.tableData = result.data;
+        this.total = result.data.length;
+        // result.data[0]中获得到tableColumns
+        this.tableColumns = Object.keys(result.data[0]).map((item) => {
+          return {
+            key: item,
+            name: item,
+          };
+        });
+        console.log(this.tableColumns);
       } else {
-        this.$message.error(result.data.message);
+        this.$message.error("手术信息汇总表获取失败");
       }
     },
     // 路由跳转

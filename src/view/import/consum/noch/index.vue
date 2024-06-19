@@ -1,13 +1,17 @@
 <template>
   <div class="content">
-    <TableData :mydata="tableData" :mytotal="total" :myshuxing="tableColumns"></TableData>
+    <TableData
+      :mydata="tableData"
+      :mytotal="total"
+      :myshuxing="tableColumns"
+    ></TableData>
   </div>
 </template>
 
 <script>
-import TableData from '@/components/TableData.vue';
+import TableData from "@/components/TableData.vue";
 export default {
-  components: { TableData, },
+  components: { TableData },
   data() {
     return {
       total: 1, // 初始化应为 0，这里只做演示效果使用
@@ -22,12 +26,12 @@ export default {
         },
       ],
       tableColumns: [
-        { key: 'name', name: '姓名', minWidth: 120 },
-        { key: 'sex', name: '性别', minWidth: 120 },
-        { key: 'nickname', name: '昵称', minWidth: 150 },
-        { key: 'mobile', name: '手机号', minWidth: 150 },
-        { key: 'stateName', name: '状态', width: 250 },
-      ]
+        { key: "name", name: "姓名", minWidth: 120 },
+        { key: "sex", name: "性别", minWidth: 120 },
+        { key: "nickname", name: "昵称", minWidth: 150 },
+        { key: "mobile", name: "手机号", minWidth: 150 },
+        { key: "stateName", name: "状态", width: 250 },
+      ],
     };
   },
   created() {
@@ -35,14 +39,20 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getBSFHC", {
-        params: this.searchForm,
-      });
-      if (result.data.success) {
-        this.tableData = result.data.data.records;
-        this.total = result.data.data.total;
+      const result = await this.$axios.get("http://localhost:50051/table/getBSFHC");
+      if (result.data) {
+        this.tableData = result.data;
+        this.total = result.data.length;
+        // result.data[0]中获得到tableColumns
+        this.tableColumns = Object.keys(result.data[0]).map((item) => {
+          return {
+            key: item,
+            name: item,
+          };
+        });
+        console.log(this.tableColumns);
       } else {
-        this.$message.error(result.data.message);
+        this.$message.error("手术信息汇总表获取失败");
       }
     },
     // 路由跳转

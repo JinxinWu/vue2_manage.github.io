@@ -24,22 +24,46 @@ export default {
       tableData_GK: [ ],
 
       tableColumns_GK: [
-        { key: 'name', name: '工号' },
-        { key: 'sex', name: '职工姓名' },
-        { key: 'nickname', name: '职工性质' },
-        { key: 'mobile', name: '职工类别' },
-        { key: 'mobile', name: '职称' },
-        { key: 'mobile', name: '职务' },
-        { key: 'mobile', name: '人事科室' },
-        { key: 'mobile', name: '绩效' },
-        { key: 'mobile', name: '应发工资' },
-        { key: 'mobile', name: '单位五险二金' },
-        { key: 'mobile', name: '人力成本合计' },
+        { key: 'gh', name: '工号' },
+        { key: 'zgxm', name: '职工姓名' },
+        { key: 'zgxz', name: '职工性质' },
+        { key: 'zglb', name: '职工类别' },
+        { key: 'zc', name: '职称' },
+        { key: 'zw', name: '职务' },
+        { key: 'rsks', name: '人事科室' },
+        { key: 'jx', name: '绩效' },
+        { key: 'yfgz', name: '应发工资' },
+        { key: 'dwwxej', name: '单位五险二金' },
+        { key: 'rlcbhj', name: '人力成本合计' },
       ],
       tableData_MZ: [ ],
-      tableColumns_MZ: [ ],
+      tableColumns_MZ: [
+        { key: 'gh', name: '工号' },
+        { key: 'zgxm', name: '职工姓名' },
+        { key: 'zgxz', name: '职工性质' },
+        { key: 'zglb', name: '职工类别' },
+        { key: 'zc', name: '职称' },
+        { key: 'zw', name: '职务' },
+        { key: 'rsks', name: '人事科室' },
+        { key: 'jx', name: '绩效' },
+        { key: 'yfgz', name: '应发工资' },
+        { key: 'dwwxej', name: '单位五险二金' },
+        { key: 'rlcbhj', name: '人力成本合计' },
+      ],
       tableData_SS: [ ],
-      tableColumns_SS: [ ]
+      tableColumns_SS: [
+        { key: 'gh', name: '工号' },
+        { key: 'zgxm', name: '职工姓名' },
+        { key: 'zgxz', name: '职工性质' },
+        { key: 'zglb', name: '职工类别' },
+        { key: 'zc', name: '职称' },
+        { key: 'zw', name: '职务' },
+        { key: 'rsks', name: '人事科室' },
+        { key: 'jx', name: '绩效' },
+        { key: 'yfgz', name: '应发工资' },
+        { key: 'dwwxej', name: '单位五险二金' },
+        { key: 'rlcbhj', name: '人力成本合计' },
+      ]
     };
   },
   created() {
@@ -49,7 +73,7 @@ export default {
   },
   methods: {
     async getPageList_GK() {
-      const result = await this.$axios.get("http://localhost:50051/table/getGKYSXZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getGKYSXZ");
       if (result.data) {
         this.tableData_GK = result.data;
         this.total = result.data.length;
@@ -59,42 +83,42 @@ export default {
             key: item,
             name: item,
           };
-        });
-        // console.log(this.tableColumns);
+        });d
+        console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }
     },
     async getPageList_MZ() {
-      const result = await this.$axios.get("http://localhost:50051/table/getMZKXZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getMZKXZ");
       if (result.data) {
         this.tableData_MZ = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_MZ = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_MZ = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }
     },
     async getPageList_SS() {
-      const result = await this.$axios.get("http://localhost:50051/table/getSSSXZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSSSXZ");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_SS = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_SS = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_SS = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");

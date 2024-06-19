@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get("http://localhost:50051/table/getSSXXHZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSSXXHZ");
       if (result.data) {
         this.tableData = result.data;
         this.total = result.data.length;

@@ -14,47 +14,44 @@ export default {
       tableData: [
       ],
       tableColumns: [
-          { key: "time", name: "床位" },
-          { key: "surgicalLeveal", name: "surgicalLeveal" },
-          { key: "surgicalType", name: "surgicalType" },
-          { key: "room", name: "room" },
-          { key: "unitsNum", name: "unitsNum" },
-          { key: "surgicalState", name: "surgicalState" },
-          { key: "noticeTime", name: "noticeTime" },
-          { key: "deliveryTime", name: "deliveryTime" },
-          { key: "arriveTime", name: "arriveTime" },
-          { key: "enterTime", name: "enterTime" },
-          { key: "firstCheck", name: "firstCheck" },
-          { key: "mianKnifeCheck", name: "mianKnifeCheck" },
-          { key: "anesthesiaTime", name: "anesthesiaTime" },
-          { key: "surgeryStartTime", name: "surgeryStartTime" },
-          { key: "surgeryEndTime", name: "surgeryEndTime" },
-          { key: "leaveRoomTime", name: "leaveRoomTime" },
-          { key: "leaveHouseTime", name: "leaveHouseTime" },
-          { key: "anesthesiaMethod", name: "anesthesiaMethod" },
-          { key: "anesthesiaDoctor", name: "anesthesiaDoctor" },
-          { key: "ssys", name: "ssys" },
-          { key: "zyh", name: "zyh" },
-          { key: "ssmc", name: "ssmc" },
-          { key: "cw", name: "cw" },
-          { key: "xb", name: "xb" },
-          { key: "nl", name: "nl" },
-          { key: "xm", name: "xm" },
-          { key: "sqks", name: "sqks" },
-          { key: "ssks", name: "ssks" },
-          { key: "yllz", name: "yllz" }
+        { key: "time", name: "床位" },
+        { key: "surgicalLeveal", name: "surgicalLeveal" },
+        { key: "surgicalType", name: "surgicalType" },
+        { key: "room", name: "room" },
+        { key: "unitsNum", name: "unitsNum" },
+        { key: "surgicalState", name: "surgicalState" },
+        { key: "noticeTime", name: "noticeTime" },
+        { key: "deliveryTime", name: "deliveryTime" },
+        { key: "arriveTime", name: "arriveTime" },
+        { key: "enterTime", name: "enterTime" },
+        { key: "firstCheck", name: "firstCheck" },
+        { key: "mianKnifeCheck", name: "mianKnifeCheck" },
+        { key: "anesthesiaTime", name: "anesthesiaTime" },
+        { key: "surgeryStartTime", name: "surgeryStartTime" },
+        { key: "surgeryEndTime", name: "surgeryEndTime" },
+        { key: "leaveRoomTime", name: "leaveRoomTime" },
+        { key: "leaveHouseTime", name: "leaveHouseTime" },
+        { key: "anesthesiaMethod", name: "anesthesiaMethod" },
+        { key: "anesthesiaDoctor", name: "anesthesiaDoctor" },
+        { key: "ssys", name: "ssys" },
+        { key: "zyh", name: "zyh" },
+        { key: "ssmc", name: "ssmc" },
+        { key: "cw", name: "cw" },
+        { key: "xb", name: "xb" },
+        { key: "nl", name: "nl" },
+        { key: "xm", name: "xm" },
+        { key: "sqks", name: "sqks" },
+        { key: "ssks", name: "ssks" },
+        { key: "yllz", name: "yllz" }
       ]
     };
   },
   created() {
-    // 定时刷新
-    setInterval(() => {
-      this.getPageList();
-    }, 1000);
+    this.getPageList();
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get("http://localhost:50051/table/getSSXXHZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSSXXHZ");
       if (result.data) {
         this.tableData = result.data;
         this.total = result.data.length;

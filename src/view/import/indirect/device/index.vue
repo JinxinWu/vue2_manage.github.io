@@ -153,7 +153,7 @@ export default {
     // 提交数据 tableData
     onSubmit() {
       this.$axios
-        .post("http://localhost:50051/money/SSJSB", this.tableData)
+        .post("http://8.130.74.65:50051/money/SSJSB", this.tableData)
         .then((res) => {
           if (res.data.success) {
             this.$message({ message: "上传成功！", type: "success" });

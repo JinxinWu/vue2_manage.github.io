@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     async getPageList_GK() {
-      const result = await this.$axios.get("http://localhost:50051/table/getGKYSPB");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getGKYSPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_GK = result.data;
@@ -103,7 +103,7 @@ export default {
       }
     },
     async getPageList_MZ() {
-      const result = await this.$axios.get("http://localhost:50051/table/getMZKPB");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getMZKPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_MZ = result.data;
@@ -121,7 +121,7 @@ export default {
       }
     },
     async getPageList_SS() {
-      const result = await this.$axios.get("http://localhost:50051/table/getSSSPB");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSSSPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_SS = result.data;

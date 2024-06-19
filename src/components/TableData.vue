@@ -157,7 +157,7 @@ export default {
         console.log(this.urlAdd);
         this.$axios({
           method: "post",
-          url: "http://localhost:50051/file/downTaxes",
+          url: "http://8.130.74.65:50051/file/downTaxes",
           headers: {
             'Content-Type': 'multipart/form-data',
           },

@@ -66,7 +66,7 @@ export default {
       this.form.sum = (Number(this.form.water) + Number(this.form.elec)) * Number(this.form.area) / Number(this.form.areaSum);
       this.$axios({
         method: "post",
-        url: "http://localhost:50051/money/SDF",
+        url: "http://8.130.74.65:50051/money/SDF",
         headers: {
           "Content-Type": "application/json",
         },

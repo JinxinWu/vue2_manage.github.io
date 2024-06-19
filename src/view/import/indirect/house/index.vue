@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex"; // 引入mapState
 export default {
   name: "ele",
   components: {},
@@ -76,7 +75,7 @@ export default {
         Number(this.form.areaSum);
       this.$axios({
         method: "post",
-        url: "http://localhost:50051/money/FWZJ",
+        url: "http://8.130.74.65:50051/money/FWZJ",
         headers: {
           "Content-Type": "application/json",
         },

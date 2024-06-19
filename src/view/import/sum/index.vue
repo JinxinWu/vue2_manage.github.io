@@ -104,7 +104,10 @@ export default {
     };
   },
   created() {
-    this.getPageList();
+    // 定时刷新
+    setInterval(() => {
+      this.getPageList();
+    }, 1000);
   },
   methods: {
     async getPageList() {

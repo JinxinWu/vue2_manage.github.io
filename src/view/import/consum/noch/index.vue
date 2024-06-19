@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get(url, {
+      const result = await this.$axios.get("http://8.130.90.74:50051/table/getBSFHC", {
         params: this.searchForm,
       });
       if (result.data.success) {

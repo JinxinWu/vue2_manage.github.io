@@ -2,13 +2,13 @@
   <div class="content">
     <el-tabs type="border-card">
       <el-tab-pane label="骨科医生排班表">
-        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK" :urlAdd="GKYSPB"></TableData>
+        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK" urlAdd="GKYSPB"></TableData>
       </el-tab-pane>
       <el-tab-pane label="麻醉科排班表">
-        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ" :urlAdd="MZKPB"></TableData>
+        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ" urlAdd="MZKPB"></TableData>
       </el-tab-pane>
       <el-tab-pane label="手术室排班表">
-        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS" :urlAdd="SSSPB"></TableData>
+        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS" urlAdd="SSSPB"></TableData>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     async getPageList_GK() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getGKYSPB");
+      const result = await this.$axios.get("http://localhost:50051/table/getGKYSPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_GK = result.data;
@@ -103,7 +103,7 @@ export default {
       }
     },
     async getPageList_MZ() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getMZKPB");
+      const result = await this.$axios.get("http://localhost:50051/table/getMZKPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_MZ = result.data;
@@ -121,7 +121,7 @@ export default {
       }
     },
     async getPageList_SS() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getSSSPB");
+      const result = await this.$axios.get("http://localhost:50051/table/getSSSPB");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_SS = result.data;

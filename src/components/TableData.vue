@@ -154,7 +154,7 @@ export default {
       } else {
         // let form = new FormData();
         // form.append("file", this.fileList[0]);
-        console.log(this.fileList[0]);
+        console.log(this.urlAdd);
         this.$axios({
           method: "post",
           url: "http://localhost:50051/file/downTaxes",
@@ -163,7 +163,7 @@ export default {
           },
           data: {
             file: this.fileList[0],
-            url: (this.urlAdd) ? this.$route.path + this.urlAdd : this.$route.path,
+            url: (this.urlAdd) ? this.$route.path + '/' + this.urlAdd : this.$route.path,
           },
         }).then(
           (res) => {},

@@ -2,13 +2,13 @@
   <div class="content">
     <el-tabs type="border-card">
       <el-tab-pane label="骨科医生薪资表">
-        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK" :urlAdd="GKYSXZ"></TableData>
+        <TableData :mydata="tableData_GK" :mytotal="total" :myshuxing="tableColumns_GK" urlAdd="GKYSXZ"></TableData>
       </el-tab-pane>
       <el-tab-pane label="麻醉科薪资表">
-        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ" :urlAdd="MZKXZ"></TableData>
+        <TableData :mydata="tableData_MZ" :mytotal="total" :myshuxing="tableColumns_MZ" urlAdd="MZKXZ"></TableData>
       </el-tab-pane>
       <el-tab-pane label="手术室薪资表">
-        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS" :urlAdd="SSSXZ"></TableData>
+        <TableData :mydata="tableData_SS" :mytotal="total" :myshuxing="tableColumns_SS" urlAdd="SSSXZ"></TableData>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     async getPageList_GK() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getGKYSXZ");
+      const result = await this.$axios.get("http://localhost:50051/table/getGKYSXZ");
       if (result.data) {
         this.tableData_GK = result.data;
         this.total = result.data.length;
@@ -66,7 +66,7 @@ export default {
       }
     },
     async getPageList_MZ() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getMZKXZ");
+      const result = await this.$axios.get("http://localhost:50051/table/getMZKXZ");
       if (result.data) {
         this.tableData_MZ = result.data;
         this.total = result.data.length;
@@ -83,7 +83,7 @@ export default {
       }
     },
     async getPageList_SS() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getSSSXZ");
+      const result = await this.$axios.get("http://localhost:50051/table/getSSSXZ");
       console.log(result.data[0]);
       if (result.data) {
         this.tableData_SS = result.data;

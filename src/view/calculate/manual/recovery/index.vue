@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get("http://8.130.90.74:50051/table/getFSRGFY");
+      const result = await this.$axios.get("http://localhost:50051/table/getFSRGFY");
       // console.log(result.data[0]);
       if (result.data) {
         this.tableData = result.data;

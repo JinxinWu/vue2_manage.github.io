@@ -31,6 +31,14 @@ export default {
       // console.log(result.data[0]);
       if (result.data) {
         this.tableData = result.data;
+        // 遍历tableData数组
+        this.tableData.forEach((item) => {
+          item.fwzj = Number(item.fwzj).toFixed(2);
+          item.sbzj = Number(item.sbzj).toFixed(2);
+          item.sdf = Number(item.sdf).toFixed(2);
+          item.hj = Number(item.hj).toFixed(2);
+          item.dwsjbzcb = Number(item.dwsjbzcb).toFixed(2);
+        });
         this.total = result.data.length;
         console.log(this.tableColumns);
       } else {

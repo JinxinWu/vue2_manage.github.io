@@ -41,8 +41,8 @@ export default {
         this.tableData = result.data;
         // 将tableData数组中的ssj和clfyhj转换为数字
         this.tableData.forEach((item) => {
-          item.ssj = Number(this.$store.state.bagForm.cost);
-          item.clfyhj = Number(item.bsfhc) + Number(this.$store.state.bagForm.cost);
+          item.ssb = Number(this.$store.state.bagForm.cost).toFixed(2);
+          item.clfyhj = (Number(item.bsfhc) + Number(this.$store.state.bagForm.cost)).toFixed(2);
         });
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns

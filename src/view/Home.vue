@@ -87,13 +87,13 @@
                 <i class="el-icon-s-platform"></i>
                 <span>成本计算</span>
               </template>
+              <el-menu-item index="/calculate/material">材料费用</el-menu-item>
               <el-submenu index="2-1">
                 <span slot="title">人工费用</span>
                 <el-menu-item index="/calculate/manual/mazui">麻醉</el-menu-item>
                 <el-menu-item index="/calculate/manual/surgery">手术</el-menu-item>
                 <el-menu-item index="/calculate/manual/recovery">复苏</el-menu-item>
               </el-submenu>
-              <el-menu-item index="/calculate/material">材料费用</el-menu-item>
               <el-submenu index="2-2">
                 <span slot="title">间接费用</span>
                 <el-menu-item index="/calculate/indirect/standard">各手术间单位时间标准成本</el-menu-item>

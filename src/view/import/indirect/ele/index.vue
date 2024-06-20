@@ -63,7 +63,7 @@ export default {
   methods: {
     onSubmit() {
       // 转换成数字计算
-      this.form.sum = (Number(this.form.water) + Number(this.form.elec)) * Number(this.form.area) / Number(this.form.areaSum).toFixed(2);
+      this.form.sum = ((Number(this.form.water) + Number(this.form.elec)) * Number(this.form.area) / Number(this.form.areaSum)).toFixed(2);
       this.$axios({
         method: "post",
         url: "http://8.130.74.65:50051/money/SDF",

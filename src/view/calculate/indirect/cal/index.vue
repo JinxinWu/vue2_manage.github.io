@@ -28,9 +28,13 @@ export default {
   methods: {
     async getPageList() {
       const result = await this.$axios.get("http://8.130.74.65:50051/table/getJJFY");
-      // console.log(result.data[0]);
       if (result.data) {
         this.tableData = result.data;
+        // 遍历tableData数组
+        this.tableData.forEach((item) => {
+          item.dwsjbzcb = Number(item.dwsjbzcb).toFixed(2);
+          item.jjfyhj = Number(item.jjfyhj).toFixed(2);
+        });
         this.total = result.data.length;
       } else {
         this.$message.error("手术信息汇总表获取失败");

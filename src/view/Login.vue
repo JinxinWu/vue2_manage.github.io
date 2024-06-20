@@ -74,7 +74,15 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // this.loginLoading = true;
+          this.loginLoading = true;
+          this.$axios
+            .get("http://8.130.74.65:50051/table/deleteAllTable")
+            .then((res) => {
+            })
+            .catch((err) => {
+              this.$message.error("服务器连接失败，请稍后重试......");
+              this.loginLoading = false;
+            });
           // this.$axios
           //   .post("/auth/login", this.form)
           //   .then((res) => {

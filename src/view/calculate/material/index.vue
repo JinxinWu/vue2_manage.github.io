@@ -13,20 +13,21 @@ export default {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
         {
-          name: "wu",
-          sex: 1,
-          nickname: "Star",
-          mobile: "19999999999",
-          state: 0,
-          stateName: "正常",
+          zyh: "wu",
+          ssmc: 1,
+          ssj: "Star",
+          ssb: 666,
+          bsfhc: 0,
+          clfyhj: 100,
         },
       ],
       tableColumns: [
-        { key: 'name', name: '姓名', minWidth: 120 },
-        { key: 'sex', name: '性别', minWidth: 120 },
-        { key: 'nickname', name: '昵称', minWidth: 150 },
-        { key: 'mobile', name: '手机号', minWidth: 150 },
-        { key: 'stateName', name: '状态', width: 250 },
+        { key: 'zyh', name: '住院号' },
+        { key: 'ssmc', name: '手术名称' },
+        { key: 'ssj', name: '手术间' },
+        { key: 'ssb', name: '手术包' },
+        { key: 'bsfhc', name: '不收费耗材' },
+        { key: 'clfyhj', name: '材料费用合计' },
       ]
     };
   },
@@ -36,18 +37,22 @@ export default {
   methods: {
     async getPageList() {
       const result = await this.$axios.get("http://8.130.74.65:50051/table/getCLFY");
-      // console.log(result.data[0]);
       if (result.data) {
         this.tableData = result.data;
+        // 将tableData数组中的ssj和clfyhj转换为数字
+        this.tableData.forEach((item) => {
+          item.ssj = Number(this.$store.state.bagForm.cost);
+          item.clfyhj = Number(item.bsfhc) + Number(this.$store.state.bagForm.cost);
+        });
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
-        console.log(this.tableColumns);
+        // this.tableColumns = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
+        // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }

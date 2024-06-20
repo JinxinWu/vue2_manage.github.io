@@ -52,8 +52,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      // 转换成数字计算
-      this.form.res = Number(this.form.zhejiu) * Number(this.form.area) / Number(this.form.areaSum);
+      this.$message({
+        showClose: true,
+        message: '数据上传成功',
+        type: 'success'
+      });
     }
   },
 };

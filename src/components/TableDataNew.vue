@@ -6,7 +6,11 @@
 
       <!-- 表格 -->
       <el-table ref="table" :data="tableDataShow" border>
-        <el-table-column fixed type="index" label="序号" width="50" />
+        <el-table-column fixed label="序号" width="50">
+          <template slot-scope="scope">
+            {{ scope.$index + 1 + (searchForm.current - 1) * searchForm.size }}
+          </template>
+        </el-table-column>
         <el-table-column v-for="item in tableColumns" :key="item.key" :prop="item.key" align='center'
           :label="item.name">
         </el-table-column>
@@ -38,7 +42,7 @@ export default {
   watch: {
     mydata: function (newVal, oldVal) {
       this.tableData = newVal;
-      this.handleSizeChange(this.searchForm.size);
+      // this.handleSizeChange(this.searchForm.size);
     },
     myshuxing: function (newVal, oldVal) {
       this.tableColumns = newVal;

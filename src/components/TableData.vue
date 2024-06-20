@@ -6,19 +6,9 @@
 
       <el-dialog title="文件上传" :visible.sync="dialogUploadVisible">
         <div>
-          <el-upload
-            drag
-            :limit="limitNum"
-            :auto-upload="false"
-            accept=".xlsx"
-            :action="UploadUrl()"
-            :before-upload="beforeUploadFile"
-            :on-change="fileChange"
-            :on-exceed="exceedFile"
-            :on-success="handleSuccess"
-            :on-error="handleError"
-            :file-list="fileList"
-          >
+          <el-upload drag :limit="limitNum" :auto-upload="false" accept=".xlsx" :action="UploadUrl()"
+            :before-upload="beforeUploadFile" :on-change="fileChange" :on-exceed="exceedFile"
+            :on-success="handleSuccess" :on-error="handleError" :file-list="fileList">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">
               将文件拖到此处，或<em>点击上传</em>
@@ -28,35 +18,25 @@
             </div>
           </el-upload>
           <br />
-          <el-button size="small" type="primary" @click="uploadFile"
-            >立即上传</el-button
-          >
+          <el-button size="small" type="primary" @click="uploadFile">立即上传</el-button>
           <el-button size="small">取消</el-button>
         </div>
       </el-dialog>
       <!-- 表格 -->
       <el-table ref="table" :data="tableDataShow" border>
-        <el-table-column fixed type="index" label="序号" width="50" />
-        <el-table-column
-          v-for="item in tableColumns"
-          :key="item.key"
-          :prop="item.key"
-          align="center"
-          :label="item.name"
-        >
+        <el-table-column fixed label="序号" width="50">
+          <template slot-scope="scope">
+            {{ scope.$index + 1 + (searchForm.current - 1) * searchForm.size }}
+          </template>
+        </el-table-column>
+        <el-table-column v-for="item in tableColumns" :key="item.key" :prop="item.key" align="center"
+          :label="item.name">
         </el-table-column>
       </el-table>
       <!-- 分页 -->
-      <el-pagination
-        class="pagination"
-        layout="->,total, sizes, prev, pager, next, jumper"
-        :page-sizes="[10, 20, 30, 40]"
-        :current-page="searchForm.current"
-        :page-size="searchForm.size"
-        :total="total"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <el-pagination class="pagination" layout="->,total, sizes, prev, pager, next, jumper"
+        :page-sizes="[10, 20, 30, 40]" :current-page="searchForm.current" :page-size="searchForm.size" :total="total"
+        @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </el-card>
   </div>
 </template>
@@ -91,7 +71,7 @@ export default {
       this.total = newVal;
     },
   },
-  created() {},
+  created() { },
   methods: {
     // 切换每页显示条数
     handleSizeChange(val) {
@@ -112,8 +92,7 @@ export default {
     // 文件超出个数限制时的钩子
     exceedFile(files, fileList) {
       this.$message.warning(
-        `只能选择 ${this.limitNum} 个文件，当前共选择了 ${
-          files.length + fileList.length
+        `只能选择 ${this.limitNum} 个文件，当前共选择了 ${files.length + fileList.length
         } 个`
       );
     },
@@ -154,7 +133,6 @@ export default {
       } else {
         // let form = new FormData();
         // form.append("file", this.fileList[0]);
-        console.log(this.urlAdd);
         this.$axios({
           method: "post",
           url: "http://8.130.74.65:50051/file/downTaxes",
@@ -166,7 +144,9 @@ export default {
             url: (this.urlAdd) ? this.$route.path + '/' + this.urlAdd : this.$route.path,
           },
         }).then(
-          (res) => {},
+          (res) => {
+            dialogUploadVisible = false;
+          },
           (err) => {
             console.log(err);
           }

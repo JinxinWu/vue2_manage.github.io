@@ -10,26 +10,16 @@
         <el-col :offset="6" :span="10">
           <el-form ref="form" :model="form" label-width="180px">
             <el-form-item label="本月折旧总计">
-              <el-input
-                v-model="form.zhejiu"
-                placeholder="请输入数值"
-              ></el-input>
+              <el-input v-model="form.zhejiu" placeholder="请输入数值"></el-input>
             </el-form-item>
             <el-form-item label="总面积">
-              <el-input
-                v-model="form.areaSum"
-                placeholder="请输入数值"
-              ></el-input>
+              <el-input v-model="form.areaSum" placeholder="请输入数值"></el-input>
             </el-form-item>
             <el-form-item label="手术间面积">
               <el-input v-model="form.area" placeholder="请输入数值"></el-input>
             </el-form-item>
             <el-form-item label="本月手术间房屋折旧总计">
-              <el-input
-                v-model="form.res"
-                placeholder="等待计算"
-                :disabled="true"
-              ></el-input>
+              <el-input v-model="form.res" placeholder="等待计算" :disabled="true"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit">计算结果</el-button>
@@ -66,7 +56,7 @@ export default {
       },
     },
   },
-  created() {},
+  created() { },
   methods: {
     onSubmit() {
       // 转换成数字计算
@@ -89,6 +79,11 @@ export default {
         }),
       }).then(
         (res) => {
+          this.$message({
+            showClose: true,
+            message: '数据上传成功',
+            type: 'success'
+          });
           console.log(res.data);
         },
         (err) => {

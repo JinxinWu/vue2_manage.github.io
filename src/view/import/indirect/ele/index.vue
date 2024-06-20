@@ -80,6 +80,11 @@ export default {
         }),
       }).then(
         (res) => {
+          this.$message({
+            showClose: true,
+            message: '数据上传成功',
+            type: 'success'
+          });
           console.log(res.data);
         },
         (err) => {

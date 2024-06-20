@@ -3,7 +3,13 @@
     <el-card shadow="never">
       <!-- Upload -->
       <el-button @click="handleSizeChange(searchForm.size)">计算数据</el-button>
-
+      <template v-if="$route.path == '/calculate/sum'">
+        <download-excel class="export-excel-wrapper" :data="mydata" :fields="json_fields" header="成本汇总"
+          name="成本汇总.xls">
+          <!-- 上面可以自定义自己的样式，还可以引用其他组件button -->
+          <el-button type="success">导出</el-button>
+        </download-excel>
+      </template>
       <!-- 表格 -->
       <el-table ref="table" :data="tableDataShow" border>
         <el-table-column fixed label="序号" width="50">
@@ -27,11 +33,20 @@
 export default {
   data() {
     return {
+      json_fields: {
+        "住院号":'zyh',
+        "手术名称":'ssmc',
+        "手术间":'ssj',
+        "材料费用合计":'clfy',
+        "人工费用合计":'rgfy',
+        "间接费用合计":'jjfy',
+        "成本合计":'cbhj',
+      },
       searchForm: {
         current: 1,
         size: 10,
       },
-      total: this.mytotal, // 初始化应为 0，这里只做演示效果使用
+      total: this.mydata.length, // 初始化应为 0，这里只做演示效果使用
       tableData: this.mydata,
       tableDataShow: [],
       tableColumns: this.myshuxing,
@@ -78,5 +93,9 @@ export default {
 <style scoped>
 .el-table {
   margin: 20px 0px;
+}
+
+.export-excel-wrapper {
+  display: inline;
 }
 </style>

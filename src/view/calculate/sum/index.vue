@@ -12,14 +12,15 @@ export default {
     return {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [
-        // {
-        //   name: "wu",
-        //   sex: 1,
-        //   nickname: "Star",
-        //   mobile: "19999999999",
-        //   state: 0,
-        //   stateName: "正常",
-        // },
+        {
+          zyh: "wu",
+          ssmc: 1,
+          ssj: "Star",
+          clfy: "19999999999",
+          rgfy: 0,
+          jjfy: "正常",
+          cbhj: "正常",
+        },
       ],
       tableColumns: [
         { key: 'zyh', name: '住院号' },

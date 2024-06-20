@@ -51,7 +51,7 @@ export default {
         current: 1,
         size: 10,
       },
-      total: this.mytotal, // 初始化应为 0，这里只做演示效果使用
+      total: this.mydata.length, // 初始化应为 0，这里只做演示效果使用
       tableData: this.mydata,
       tableDataShow: [],
       tableColumns: this.myshuxing,
@@ -146,9 +146,11 @@ export default {
         }).then(
           (res) => {
             dialogUploadVisible = false;
+            location.reload();
           },
           (err) => {
             console.log(err);
+            location.reload();
           }
         );
       }

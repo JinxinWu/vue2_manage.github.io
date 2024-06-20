@@ -14,6 +14,7 @@ import * as echarts from 'echarts'
 import axios from 'axios'
 // 引入 v-fit-columns
 import Plugin from 'v-fit-columns';
+import JsonExcel from 'vue-json-excel'
 
 // 将 axios 挂载到 Vue 上
 Vue.prototype.$axios = axios
@@ -27,6 +28,7 @@ Vue.use(Plugin);
 Vue.prototype.$echarts = echarts
 Vue.prototype.$commonJs = commonJs
 Vue.prototype.$constant = constant
+Vue.component('downloadExcel', JsonExcel)
 
 // 设置接口请求的前缀地址
 axios.defaults.baseURL = '/zhifou-study'

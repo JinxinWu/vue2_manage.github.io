@@ -83,8 +83,7 @@ export default {
             key: item,
             name: item,
           };
-        });d
-        console.log(this.tableColumns);
+        });
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }

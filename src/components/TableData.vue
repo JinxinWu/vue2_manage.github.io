@@ -145,7 +145,7 @@ export default {
           },
         }).then(
           (res) => {
-            dialogUploadVisible = false;
+            this.dialogUploadVisible = false;
             location.reload();
           },
           (err) => {

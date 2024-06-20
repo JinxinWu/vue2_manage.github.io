@@ -11,95 +11,23 @@ export default {
   data() {
     return {
       total: 1, // 初始化应为 0，这里只做演示效果使用
-      tableData: [
-      ],
+      tableData: [],
       tableColumns: [
-          { key: "time", name: "床位" },
-          { key: "surgicalLeveal", name: "surgicalLeveal" },
-          { key: "surgicalType", name: "surgicalType" },
-          { key: "room", name: "room" },
-          { key: "unitsNum", name: "unitsNum" },
-          { key: "surgicalState", name: "surgicalState" },
-          { key: "noticeTime", name: "noticeTime" },
-          { key: "deliveryTime", name: "deliveryTime" },
-          { key: "arriveTime", name: "arriveTime" },
-          { key: "enterTime", name: "enterTime" },
-          {
-            key: "firstCheck",
-            name: "firstCheck"
-          },
-          {
-            key: "mianKnifeCheck",
-            name: "mianKnifeCheck"
-          },
-          {
-            key: "anesthesiaTime",
-            name: "anesthesiaTime"
-          },
-          {
-            key: "surgeryStartTime",
-            name: "surgeryStartTime"
-          },
-          {
-            key: "surgeryEndTime",
-            name: "surgeryEndTime"
-          },
-          {
-            key: "leaveRoomTime",
-            name: "leaveRoomTime"
-          },
-          {
-            key: "leaveHouseTime",
-            name: "leaveHouseTime"
-          },
-          {
-            key: "anesthesiaMethod",
-            name: "anesthesiaMethod"
-          },
-          {
-            key: "anesthesiaDoctor",
-            name: "anesthesiaDoctor"
-          },
-          {
-            key: "ssys",
-            name: "ssys"
-          },
-          {
-            key: "zyh",
-            name: "zyh"
-          },
-          {
-            key: "ssmc",
-            name: "ssmc"
-          },
-          {
-            key: "cw",
-            name: "cw"
-          },
-          {
-            key: "xb",
-            name: "xb"
-          },
-          {
-            key: "nl",
-            name: "nl"
-          },
-          {
-            key: "xm",
-            name: "xm"
-          },
-          {
-            key: "sqks",
-            name: "sqks"
-          },
-          {
-            key: "ssks",
-            name: "ssks"
-          },
-          {
-            key: "yllz",
-            name: "yllz"
-          }
+        { key: 'syks', name: '使用科室' },
+        { key: 'cpbh', name: '资产编码' },
+        { key: 'cpmc', name: '资产名称' },
+        { key: 'ggxh', name: '规格型号' },
+        { key: 'dw', name: '单位' },
+        { key: 'sl', name: '数量' },
+        { key: 'yz', name: '原值' },
+        { key: 'yzje', name: '月折旧额' },
+        { key: 'ljzj', name: '累计折旧' },
+        { key: 'jz', name: '净值' },
+        { key: 'ycyf', name: '已折月份' },
+        { key: 'grrq', name: '购入日期' },
+        { key: 'qyrq', name: '启用日期' },
+        { key: 'zjnx', name: '折旧年限' },
+        { key: 'zt', name: '状态' },
       ]
     };
   },
@@ -108,18 +36,10 @@ export default {
   },
   methods: {
     async getPageList() {
-      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSSXXHZ");
+      const result = await this.$axios.get("http://8.130.74.65:50051/table/getSBZJ");
       if (result.data) {
         this.tableData = result.data;
         this.total = result.data.length;
-        // result.data[0]中获得到tableColumns
-        this.tableColumns = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
-        console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }

@@ -23,58 +23,114 @@ export default {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData_GK: [ ],
       tableColumns_GK: [
-        { key: 'name', name: '科室' },
-        { key: 'sex', name: '排班组' },
-        { key: 'mobile', name: '工号' },
-        { key: 'mobile', name: '姓名' },
-        { key: 'mobile', name: '2024-01-01周一' },
-        { key: 'mobile', name: '2024-01-02周二' },
-        { key: 'mobile', name: '2024-01-03周三' },
-        { key: 'mobile', name: '2024-01-04周四' },
-        { key: 'mobile', name: '2024-01-05周五' },
-        { key: 'mobile', name: '2024-01-06周六' },
-        { key: 'mobile', name: '2024-01-07周日' },
-        { key: 'mobile', name: '2024-01-08周一' },
-        { key: 'mobile', name: '2024-01-09周二' },
-        { key: 'mobile', name: '2024-01-10周三' },
-        { key: 'mobile', name: '2024-01-11周四' },
-        { key: 'mobile', name: '2024-01-12周五' },
-        { key: 'mobile', name: '2024-01-13周六' },
-        { key: 'mobile', name: '2024-01-14周日' },
-        { key: 'mobile', name: '2024-01-15周一' },
-        { key: 'mobile', name: '2024-01-16周二' },
-        { key: 'mobile', name: '2024-01-17周三' },
-        { key: 'mobile', name: '2024-01-18周四' },
-        { key: 'mobile', name: '2024-01-19周五' },
-        { key: 'mobile', name: '2024-01-20周六' },
-        { key: 'mobile', name: '2024-01-21周日' },
-        { key: 'mobile', name: '2024-01-22周一' },
-        { key: 'mobile', name: '2024-01-23周二' },
-        { key: 'mobile', name: '2024-01-24周三' },
-        { key: 'mobile', name: '2024-01-25周四' },
-        { key: 'mobile', name: '2024-01-26周五' },
-        { key: 'mobile', name: '2024-01-27周六' },
-        { key: 'mobile', name: '2024-01-28周日' },
-        { key: 'mobile', name: '2024-01-29周一' },
-        { key: 'mobile', name: '2024-01-30周二' },
-        { key: 'mobile', name: '2024-01-31周三' },
-        { key: 'mobile', name: '时数' },
+      { key: 'gh', name: '工号' },
+        { key: 'xm', name: '姓名' },
+        { key: 'a', name: '2024-01-01周一' },
+        { key: 'b', name: '2024-01-02周二' },
+        { key: 'c', name: '2024-01-03周三' },
+        { key: 'd', name: '2024-01-04周四' },
+        { key: 'e', name: '2024-01-05周五' },
+        { key: 'f', name: '2024-01-06周六' },
+        { key: 'g', name: '2024-01-07周日' },
+        { key: 'h', name: '2024-01-08周一' },
+        { key: 'i', name: '2024-01-09周二' },
+        { key: 'j', name: '2024-01-10周三' },
+        { key: 'k', name: '2024-01-11周四' },
+        { key: 'l', name: '2024-01-12周五' },
+        { key: 'm', name: '2024-01-13周六' },
+        { key: 'n', name: '2024-01-14周日' },
+        { key: 'o', name: '2024-01-15周一' },
+        { key: 'p', name: '2024-01-16周二' },
+        { key: 'q', name: '2024-01-17周三' },
+        { key: 'r', name: '2024-01-18周四' },
+        { key: 's', name: '2024-01-19周五' },
+        { key: 't', name: '2024-01-20周六' },
+        { key: 'u', name: '2024-01-21周日' },
+        { key: 'v', name: '2024-01-22周一' },
+        { key: 'w', name: '2024-01-23周二' },
+        { key: 'x', name: '2024-01-24周三' },
+        { key: 'y', name: '2024-01-25周四' },
+        { key: 'z', name: '2024-01-26周五' },
+        { key: 'aa', name: '2024-01-27周六' },
+        { key: 'ab', name: '2024-01-28周日' },
+        { key: 'ac', name: '2024-01-29周一' },
+        { key: 'ad', name: '2024-01-30周二' },
+        { key: 'ae', name: '2024-01-31周三' },
+        { key: 'zss', name: '时数' },
       ],
       tableData_MZ: [ ],
       tableColumns_MZ: [
-        { key: 'name', name: '姓名' },
-        { key: 'sex', name: '性别' },
-        { key: 'nickname', name: '昵称' },
-        { key: 'mobile', name: '手机号' },
-        { key: 'stateName', name: '状态' },
+      { key: 'gh', name: '工号' },
+        { key: 'xm', name: '姓名' },
+        { key: 'a', name: '2024-01-01周一' },
+        { key: 'b', name: '2024-01-02周二' },
+        { key: 'c', name: '2024-01-03周三' },
+        { key: 'd', name: '2024-01-04周四' },
+        { key: 'e', name: '2024-01-05周五' },
+        { key: 'f', name: '2024-01-06周六' },
+        { key: 'g', name: '2024-01-07周日' },
+        { key: 'h', name: '2024-01-08周一' },
+        { key: 'i', name: '2024-01-09周二' },
+        { key: 'j', name: '2024-01-10周三' },
+        { key: 'k', name: '2024-01-11周四' },
+        { key: 'l', name: '2024-01-12周五' },
+        { key: 'm', name: '2024-01-13周六' },
+        { key: 'n', name: '2024-01-14周日' },
+        { key: 'o', name: '2024-01-15周一' },
+        { key: 'p', name: '2024-01-16周二' },
+        { key: 'q', name: '2024-01-17周三' },
+        { key: 'r', name: '2024-01-18周四' },
+        { key: 's', name: '2024-01-19周五' },
+        { key: 't', name: '2024-01-20周六' },
+        { key: 'u', name: '2024-01-21周日' },
+        { key: 'v', name: '2024-01-22周一' },
+        { key: 'w', name: '2024-01-23周二' },
+        { key: 'x', name: '2024-01-24周三' },
+        { key: 'y', name: '2024-01-25周四' },
+        { key: 'z', name: '2024-01-26周五' },
+        { key: 'aa', name: '2024-01-27周六' },
+        { key: 'ab', name: '2024-01-28周日' },
+        { key: 'ac', name: '2024-01-29周一' },
+        { key: 'ad', name: '2024-01-30周二' },
+        { key: 'ae', name: '2024-01-31周三' },
+        { key: 'zss', name: '时数' },
       ],
       tableData_SS: [ ],
       tableColumns_SS: [
-        { key: 'name', name: '姓名' },
-        { key: 'sex', name: '性别' },
-        { key: 'nickname', name: '昵称' },
-        { key: 'mobile', name: '手机号' },
-        { key: 'stateName', name: '状态' },
+      { key: 'gh', name: '工号' },
+        { key: 'xm', name: '姓名' },
+        { key: 'a', name: '2024-01-01周一' },
+        { key: 'b', name: '2024-01-02周二' },
+        { key: 'c', name: '2024-01-03周三' },
+        { key: 'd', name: '2024-01-04周四' },
+        { key: 'e', name: '2024-01-05周五' },
+        { key: 'f', name: '2024-01-06周六' },
+        { key: 'g', name: '2024-01-07周日' },
+        { key: 'h', name: '2024-01-08周一' },
+        { key: 'i', name: '2024-01-09周二' },
+        { key: 'j', name: '2024-01-10周三' },
+        { key: 'k', name: '2024-01-11周四' },
+        { key: 'l', name: '2024-01-12周五' },
+        { key: 'm', name: '2024-01-13周六' },
+        { key: 'n', name: '2024-01-14周日' },
+        { key: 'o', name: '2024-01-15周一' },
+        { key: 'p', name: '2024-01-16周二' },
+        { key: 'q', name: '2024-01-17周三' },
+        { key: 'r', name: '2024-01-18周四' },
+        { key: 's', name: '2024-01-19周五' },
+        { key: 't', name: '2024-01-20周六' },
+        { key: 'u', name: '2024-01-21周日' },
+        { key: 'v', name: '2024-01-22周一' },
+        { key: 'w', name: '2024-01-23周二' },
+        { key: 'x', name: '2024-01-24周三' },
+        { key: 'y', name: '2024-01-25周四' },
+        { key: 'z', name: '2024-01-26周五' },
+        { key: 'aa', name: '2024-01-27周六' },
+        { key: 'ab', name: '2024-01-28周日' },
+        { key: 'ac', name: '2024-01-29周一' },
+        { key: 'ad', name: '2024-01-30周二' },
+        { key: 'ae', name: '2024-01-31周三' },
+        { key: 'zss', name: '时数' },
       ]
     };
   },
@@ -91,12 +147,12 @@ export default {
         this.tableData_GK = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_GK = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_GK = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
@@ -109,12 +165,12 @@ export default {
         this.tableData_MZ = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_MZ = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_MZ = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");
@@ -127,12 +183,12 @@ export default {
         this.tableData_SS = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_SS = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_SS = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         // console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");

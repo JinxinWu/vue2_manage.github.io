@@ -78,12 +78,12 @@ export default {
         this.tableData_GK = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns_GK = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns_GK = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
       } else {
         this.$message.error("手术信息汇总表获取失败");
       }

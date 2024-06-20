@@ -14,35 +14,35 @@ export default {
       tableData: [
       ],
       tableColumns: [
-        { key: "time", name: "床位" },
-        { key: "surgicalLeveal", name: "surgicalLeveal" },
-        { key: "surgicalType", name: "surgicalType" },
-        { key: "room", name: "room" },
-        { key: "unitsNum", name: "unitsNum" },
-        { key: "surgicalState", name: "surgicalState" },
-        { key: "noticeTime", name: "noticeTime" },
-        { key: "deliveryTime", name: "deliveryTime" },
-        { key: "arriveTime", name: "arriveTime" },
-        { key: "enterTime", name: "enterTime" },
-        { key: "firstCheck", name: "firstCheck" },
-        { key: "mianKnifeCheck", name: "mianKnifeCheck" },
-        { key: "anesthesiaTime", name: "anesthesiaTime" },
-        { key: "surgeryStartTime", name: "surgeryStartTime" },
-        { key: "surgeryEndTime", name: "surgeryEndTime" },
-        { key: "leaveRoomTime", name: "leaveRoomTime" },
-        { key: "leaveHouseTime", name: "leaveHouseTime" },
-        { key: "anesthesiaMethod", name: "anesthesiaMethod" },
-        { key: "anesthesiaDoctor", name: "anesthesiaDoctor" },
-        { key: "ssys", name: "ssys" },
-        { key: "zyh", name: "zyh" },
-        { key: "ssmc", name: "ssmc" },
-        { key: "cw", name: "cw" },
-        { key: "xb", name: "xb" },
-        { key: "nl", name: "nl" },
-        { key: "xm", name: "xm" },
-        { key: "sqks", name: "sqks" },
-        { key: "ssks", name: "ssks" },
-        { key: "yllz", name: "yllz" }
+        { key: 'cw', name: '床位' },
+        { key: 'zyh', name: '住院号' },
+        { key: 'xb', name: '性别' },
+        { key: 'nl', name: '年龄' },
+        { key: 'xm', name: '姓名' },
+        { key: 'sqks', name: '申请科室' },
+        { key: 'ssks', name: '手术科室' },
+        { key: 'ssys', name: '手术医生' },
+        { key: 'yllz', name: '医疗组' },
+        { key: 'ssmc', name: '手术名称' },
+        { key: 'time', name: '安排时间' },
+        { key: 'surgicalLeveal', name: '手术级别' },
+        { key: 'surgicalType', name: '手术类别' },
+        { key: 'room', name: '手术间' },
+        { key: 'unitsNum', name: '台次' },
+        { key: 'surgicalState', name: '手术状态' },
+        { key: 'noticeTime', name: '通知时间' },
+        { key: 'deliveryTime', name: '送出病区时间' },
+        { key: 'arriveTime', name: '到达时间' },
+        { key: 'enterTime', name: '进手术间' },
+        { key: 'firstCheck', name: '首台签到' },
+        { key: 'mianKnifeCheck', name: '主刀签到时间' },
+        { key: 'anesthesiaTime', name: '麻醉开始时间' },
+        { key: 'surgeryStartTime', name: '手术开始时间' },
+        { key: 'surgeryEndTime', name: '手术结束时间' },
+        { key: 'leaveRoomTime', name: '出手术间时间' },
+        { key: 'leaveHouseTime', name: '出手术室时间' },
+        { key: 'anesthesiaMethod', name: '麻醉方法' },
+        { key: 'anesthesiaDoctor', name: '麻醉医生' },
       ]
     };
   },
@@ -56,12 +56,12 @@ export default {
         this.tableData = result.data;
         this.total = result.data.length;
         // result.data[0]中获得到tableColumns
-        this.tableColumns = Object.keys(result.data[0]).map((item) => {
-          return {
-            key: item,
-            name: item,
-          };
-        });
+        // this.tableColumns = Object.keys(result.data[0]).map((item) => {
+        //   return {
+        //     key: item,
+        //     name: item,
+        //   };
+        // });
         console.log(this.tableColumns);
       } else {
         this.$message.error("手术信息汇总表获取失败");

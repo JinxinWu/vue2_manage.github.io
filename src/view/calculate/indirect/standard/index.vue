@@ -13,12 +13,12 @@ export default {
       total: 1, // 初始化应为 0，这里只做演示效果使用
       tableData: [],
       tableColumns: [
-        { key: 'sdf', name: '本月该手术间水电费' },
-        { key: 'sbzj', name: '本月该手术间设备折旧费用' },
-        { key: 'fwzj', name: '本月该手术间房屋折旧费用' },
-        { key: ' dwsjbzcb ', name: '单位时间标准成本' },
         { key: 'ssj', name: '手术间' },
-        { key: 'hj', name: '合计' },
+        { key: 'sbzj', name: '本月该手术间设备折旧费用' },
+        { key: 'fwzj', name: '本月该手术间房屋折旧费用' },        
+        { key: 'sdf', name: '本月该手术间水电费' },        
+        { key: 'hj', name: '三项间接费用合计' },
+        { key: 'dwsjbzcb', name: '单位时间标准成本' },
       ]
     };
   },
